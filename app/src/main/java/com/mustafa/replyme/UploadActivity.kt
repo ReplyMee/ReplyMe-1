@@ -123,7 +123,7 @@ class UploadActivity : AppCompatActivity() {
                     val postMap = hashMapOf<String,Any>()
                     postMap.put("downloadUrl",downloadUrl)
                     postMap.put("userEmail",auth.currentUser!!.email.toString())
-                    postMap.put("Questions",questionText.text.toString())
+                    postMap.put("Questions",questiontext.text.toString())
                     postMap.put("date",com.google.firebase.Timestamp.now())
 
                     db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
