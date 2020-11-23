@@ -13,6 +13,8 @@ class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
+        supportActionBar?.hide()
+
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
         if(currentUser!=null)

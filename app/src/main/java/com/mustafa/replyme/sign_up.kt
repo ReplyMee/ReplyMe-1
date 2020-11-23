@@ -14,6 +14,8 @@ class sign_up : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
+
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance()
     }
@@ -40,7 +42,7 @@ class sign_up : AppCompatActivity() {
     }
     fun backToSign(view: View)
     {
-        val intent = Intent(applicationContext,MainActivity::class.java)
+        val intent = Intent(applicationContext,LogInActivity::class.java)
         startActivity(intent)
         finish()
     }
