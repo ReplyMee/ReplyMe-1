@@ -1,5 +1,7 @@
 package com.mustafa.replyme
 
+
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,8 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     fun signInClick(view : View)
     {
-        val email = userEmailText.text.toString()
-        val password = passwordText.text.toString()
+
+        val email = editTextTextPersonName.text.toString()
+        val password = editTextTextPassword.text.toString()
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {task ->
             if(task.isSuccessful)
             {
@@ -45,26 +48,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun signUpClick(view : View)
+    fun signUpClick(view: View)
     {
-        val email = userEmailText.text.toString()
-        val password = passwordText.text.toString()
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
-            if(task.isSuccessful)
-            {
-                val intent = Intent(applicationContext,FeedActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-
-        }.addOnFailureListener { exception ->
-            if(exception !=null)
-            {
-                Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
-            }
-        }
-
-
+        val intent = Intent(applicationContext,sign_up::class.java)
+        startActivity(intent)
+        finish()
     }
+
 
 }
