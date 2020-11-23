@@ -18,7 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(applicationContext,LogInActivity::class.java)
+
+
+        //buraya splash eklenecek sonrasında login cağrılacak
+
+
+        val intent = Intent(applicationContext,LogInActivity::class.java) //login burada çağrılıyor
         startActivity(intent)
         finish()
 

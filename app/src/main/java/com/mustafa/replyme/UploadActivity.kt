@@ -41,8 +41,9 @@ class UploadActivity : AppCompatActivity() {
 
     }
 
-    fun imageViewClick(View: View)
+    fun questionview(View: View)
     {
+
         if(ContextCompat.checkSelfPermission(this , Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
@@ -76,7 +77,7 @@ class UploadActivity : AppCompatActivity() {
         {
 
             selectedPicture = data.data //secilen resmin adresi
-
+            println(selectedPicture.toString())
 
             try {
                 if(selectedPicture!=null)
@@ -103,8 +104,9 @@ class UploadActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun upLoadClick(View: View)
+    fun uploadbutton(View: View)
     {
+
         val uuid = UUID.randomUUID()
         val imageName = "$uuid.jpg"
 
@@ -121,6 +123,7 @@ class UploadActivity : AppCompatActivity() {
                     println(downloadUrl)
 
                     val postMap = hashMapOf<String,Any>()
+
                     postMap.put("downloadUrl",downloadUrl)
                     postMap.put("userEmail",auth.currentUser!!.email.toString())
                     postMap.put("Questions",questiontext.text.toString())
@@ -140,6 +143,36 @@ class UploadActivity : AppCompatActivity() {
                 }
             }
         }
+        if(selectedPicture==null)
+        {
+
+
+
+
+
+
+                    val postMap = hashMapOf<String,Any>()
+
+                    postMap.put("downloadUrl","null")
+                    postMap.put("userEmail",auth.currentUser!!.email.toString())
+                    postMap.put("Questions",questiontext.text.toString())
+                    postMap.put("date",com.google.firebase.Timestamp.now())
+
+                    db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
+                        if (task.isComplete && task.isSuccessful)
+                        {
+                            finish()
+
+                        }
+
+                    }.addOnFailureListener{exception ->  Toast.makeText(applicationContext, exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()}
+                    //  val exampleMap = hashMapOf<String,Ant>("downloadUrl"to downloadUrl)
+                    //db.collection("Posts").add
+
+
+
+        }
+
 
 
 
