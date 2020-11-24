@@ -1,8 +1,7 @@
-package com.mustafa.replyme
+package com.gtu.replyme
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.ImageDecoder
@@ -19,13 +18,10 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_upload.*
 import java.lang.Exception
-import java.sql.Timestamp
 import java.util.*
-import java.util.jar.Manifest as Manifest1
 
 class UploadActivity : AppCompatActivity() {
 

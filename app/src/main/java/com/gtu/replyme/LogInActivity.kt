@@ -1,4 +1,4 @@
-package com.mustafa.replyme
+package com.gtu.replyme
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

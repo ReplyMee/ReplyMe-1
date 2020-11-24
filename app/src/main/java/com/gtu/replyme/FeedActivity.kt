@@ -1,4 +1,4 @@
-package com.mustafa.replyme
+package com.gtu.replyme
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_feed.*
-import java.sql.Timestamp
 
 class FeedActivity : AppCompatActivity() {
 
