@@ -21,6 +21,7 @@ class rePassword : AppCompatActivity() {
     fun sendEmail(view: View) {
         val email = Email_Send.text.toString()
 
+
         if(email.isEmpty()) {
             return
         }
@@ -28,8 +29,11 @@ class rePassword : AppCompatActivity() {
         auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
             if(task.isSuccessful) {
                 Toast.makeText( this,"Email Sent", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            else {
+                Toast.makeText( this,"Email Not Sent", Toast.LENGTH_SHORT).show()
             }
         }
-        finish()
     }
 }
