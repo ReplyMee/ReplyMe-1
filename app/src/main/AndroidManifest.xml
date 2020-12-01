@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.gtu.replyme.LogInActivity"></activity>
-        <activity android:name="com.gtu.replyme.sign_up"></activity>
-        <activity android:name="com.gtu.replyme.UploadActivity" />
-        <activity android:name="com.gtu.replyme.FeedActivity" />
-        <activity android:name="com.gtu.replyme.MainActivity">
+        <activity android:name=".rePassword"></activity>
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".sign_up" />
+        <activity android:name=".UploadActivity" />
+        <activity android:name=".FeedActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

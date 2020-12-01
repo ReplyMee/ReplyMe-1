@@ -57,4 +57,11 @@ class LogInActivity : AppCompatActivity() {
         finish()
     }
 
+    fun forgotPassword(view: View)
+    {
+        val intent = Intent(applicationContext, rePassword::class.java)
+        startActivity(intent)
+
+    }
+
 }
