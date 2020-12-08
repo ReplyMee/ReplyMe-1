@@ -28,13 +28,14 @@ class UploadActivity : AppCompatActivity() {
     var selectedPicture : Uri?=null
     private lateinit var db : FirebaseFirestore
     private lateinit var auth : FirebaseAuth
+    private lateinit var userId : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
         auth  = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-
+        userId = auth.uid.toString()
     }
 
     fun questionview(View: View)
@@ -120,6 +121,9 @@ class UploadActivity : AppCompatActivity() {
 
                     val postMap = hashMapOf<String,Any>()
 
+                    //val postMap2 = hashMapOf<String,Any>()
+
+
                     postMap.put("downloadUrl",downloadUrl)
                     postMap.put("userEmail",auth.currentUser!!.email.toString())
                     postMap.put("Questions",questiontext.text.toString())
@@ -128,6 +132,9 @@ class UploadActivity : AppCompatActivity() {
                     db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
                         if (task.isComplete && task.isSuccessful)
                         {
+                          //  db.collection("testUser").
+                           db.collection("Users").document(userId).collection("Posts").add(postMap)
+
                             finish()
 
                         }
@@ -157,6 +164,7 @@ class UploadActivity : AppCompatActivity() {
                     db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
                         if (task.isComplete && task.isSuccessful)
                         {
+                            db.collection("Users").document(userId).collection("Posts").add(postMap)
                             finish()
 
                         }

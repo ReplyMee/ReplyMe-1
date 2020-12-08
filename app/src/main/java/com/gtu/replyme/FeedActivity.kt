@@ -16,6 +16,8 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
 
+    private lateinit var userId : String
+
     var userEmailFromFB :ArrayList<String> = ArrayList()
     var userQuestionFromFB :ArrayList<String> = ArrayList()
     var userImageFromFB :ArrayList<String> = ArrayList() //url adres
@@ -59,6 +61,7 @@ class FeedActivity : AppCompatActivity() {
 
         getDataFromFireStore()
 
+        userId = auth.uid.toString()
 
         //recyclerview ayarları
         var layoutManager = LinearLayoutManager(this)
@@ -73,7 +76,12 @@ class FeedActivity : AppCompatActivity() {
 
     fun getDataFromFireStore()
     {
-        db.collection("Posts").addSnapshotListener { snapshot, exception ->
+       // db.collection("Users").document(userId).collection("Posts").add(postMap)
+        userId = auth.uid.toString()
+        println(userId)
+
+        // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
+        db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()

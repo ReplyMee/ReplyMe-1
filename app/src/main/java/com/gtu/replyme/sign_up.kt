@@ -6,17 +6,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_upload.*
 
 class sign_up : AppCompatActivity() {
+    private lateinit var db : FirebaseFirestore
     private lateinit var auth : FirebaseAuth
+    private lateinit var userId : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-
+        db = FirebaseFirestore.getInstance()
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance()
+
     }
     fun singnUpClicked(view : View)
     {
@@ -25,6 +30,19 @@ class sign_up : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
             if(task.isSuccessful)
             {
+                userId = auth.uid.toString()
+                val postMap = hashMapOf<String,Any>()
+
+                postMap.put("userEmail",auth.currentUser!!.email.toString())
+                postMap.put("userNickName",editTextTextPersonName2.text.toString())
+
+
+                db.collection("Users").document(userId).collection("UsersData").add(postMap)
+
+              //  db.collection("testUserr").document(userId).collection("UsersData").document(editTextTextPersonName2.text.toString())
+
+
+
                 val intent = Intent(applicationContext,FeedActivity::class.java)
                 startActivity(intent)
                 finish()
