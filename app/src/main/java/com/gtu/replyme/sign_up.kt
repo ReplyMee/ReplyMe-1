@@ -11,6 +11,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_upload.*
 
+
+
 class sign_up : AppCompatActivity() {
     private lateinit var db : FirebaseFirestore
     private lateinit var auth : FirebaseAuth
@@ -23,10 +25,23 @@ class sign_up : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
     }
+
+
+    /*
+        Kullanıcıdan valid mail almalı
+        Şifreler eşleşmeli
+     */
     fun singnUpClicked(view : View)
     {
-        val email = editTextTextPersonName3.text.toString()
-        val password = editTextTextPassword4.text.toString()
+        val email = emaill.text.toString()
+            // Eklenmesi geereken bir şey
+        val username = Username
+        val paswordAgain= PasswordAgain.text.toString()
+        val password = Password.text.toString()
+        // Kontrol edilmesi gerekiyor
+        if (password != paswordAgain ){
+
+        }
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
             if(task.isSuccessful)
             {
@@ -34,7 +49,7 @@ class sign_up : AppCompatActivity() {
                 val postMap = hashMapOf<String,Any>()
 
                 postMap.put("userEmail",auth.currentUser!!.email.toString())
-                postMap.put("userNickName",editTextTextPersonName2.text.toString())
+                postMap.put("userNickName",Username.text.toString())
 
 
                 db.collection("Users").document(userId).collection("UsersData").add(postMap)
@@ -49,7 +64,7 @@ class sign_up : AppCompatActivity() {
             }
 
         }.addOnFailureListener { exception ->
-            if(exception !=null)
+            if(exception != null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(), Toast.LENGTH_LONG).show()
             }
@@ -59,7 +74,7 @@ class sign_up : AppCompatActivity() {
     }
     fun backToSign(view: View)
     {
-        val intent = Intent(applicationContext,LogInActivity::class.java)
+        val intent = Intent(applicationContext,LoginActivity::class.java)
         startActivity(intent)
         finish()
     }

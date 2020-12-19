@@ -15,6 +15,7 @@ class rePassword : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_re_password)
         supportActionBar?.hide()
+
         auth = FirebaseAuth.getInstance()
     }
 

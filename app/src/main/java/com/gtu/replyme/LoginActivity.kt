@@ -8,8 +8,10 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_log_in.*
 
-class LogInActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
+
     private lateinit var auth : FirebaseAuth
+    var loginSuccessFull = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
@@ -20,12 +22,6 @@ class LogInActivity : AppCompatActivity() {
         if(currentUser!=null)
         {
 
-
-
-
-
-
-
             val intent = Intent(applicationContext, FeedActivity::class.java)
             startActivity(intent)
             finish()
@@ -34,8 +30,8 @@ class LogInActivity : AppCompatActivity() {
     fun signInClick(view : View)
     {
 
-        val email = editTextTextPersonName.text.toString()
-        val password = editTextTextPassword.text.toString()
+        val email = emaill.text.toString()
+        val password = Password.text.toString()
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {task ->
             if(task.isSuccessful)
             {

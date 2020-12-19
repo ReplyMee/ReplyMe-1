@@ -44,10 +44,7 @@ class FeedActivity : AppCompatActivity() {
         }
         else if (item.itemId==  R.id.logout)
         {
-            auth.signOut()
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            logoutfun()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -74,14 +71,21 @@ class FeedActivity : AppCompatActivity() {
 
     }
 
+    fun logoutfun(){
+        auth.signOut()
+        val intent = Intent(applicationContext, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     fun getDataFromFireStore()
     {
        // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
         println(userId)
 
-        // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
-        db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+         db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
+     //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()

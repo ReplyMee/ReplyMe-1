@@ -8,33 +8,33 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/emaill"
         android:layout_width="308dp"
         android:layout_height="44dp"
         android:layout_marginBottom="171dp"
         android:autofillHints=""
         android:background="@null"
         android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textPersonName"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/Password"
         app:layout_constraintTop_toBottomOf="@+id/SignupPage" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="283dp"
-        android:layout_height="37dp"
+        android:id="@+id/Password"
+        android:layout_width="308dp"
+        android:layout_height="44dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="343dp"
         android:autofillHints=""
         android:background="@null"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/emaill"
         app:layout_constraintVertical_bias="0.833" />
 
     <Button
@@ -53,13 +53,13 @@
         android:layout_marginBottom="176dp"
         android:background="#00FFFFFF"
         android:onClick="signInClick"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/emaill" />
 
     <Button
         android:id="@+id/SignupPage"
@@ -70,14 +70,15 @@
         android:layout_marginBottom="87dp"
         android:background="#00FFFFFF"
         android:onClick="signUpClick"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="#5E5959"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/emaill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="OnClick" />
 
     <TextView
         android:id="@+id/textView8"
@@ -87,10 +88,10 @@
         android:layout_marginTop="155dp"
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="87dp"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FDFCFC"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/emaill"
         app:layout_constraintEnd_toStartOf="@+id/SignupPage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -103,7 +104,7 @@
         android:layout_marginBottom="50dp"
         android:background="#00FFFFFF"
         android:onClick="forgotPassword"
-        android:text="Forgot password?"
+        android:text="@string/forgot_password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
