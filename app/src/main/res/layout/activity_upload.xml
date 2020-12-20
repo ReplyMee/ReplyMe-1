@@ -6,39 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/uploadImageView"
-        android:layout_width="289dp"
-        android:layout_height="220dp"
-        android:layout_marginBottom="32dp"
-        android:onClick="questionview"
-        app:layout_constraintBottom_toTopOf="@+id/questiontext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/select" />
-
     <EditText
         android:id="@+id/questiontext"
-        android:layout_width="328dp"
-        android:layout_height="69dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="326dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="Question"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="130dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="180dp"
         android:background="@drawable/custom_button"
         android:onClick="uploadbutton"
         android:text="upload"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/questiontext"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPicture" />
+
+    <Button
+        android:id="@+id/uploadPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="questionview"
+        android:text="+ Picture"
+        android:background="@drawable/uploadscreen_picture_button"
+        app:layout_constraintStart_toStartOf="@+id/questiontext"
+        app:layout_constraintTop_toBottomOf="@+id/questiontext" />
 </androidx.constraintlayout.widget.ConstraintLayout>
