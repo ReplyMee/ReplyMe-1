@@ -83,12 +83,12 @@ class UploadActivity : AppCompatActivity() {
                     {
                         val source = ImageDecoder.createSource(contentResolver,selectedPicture!!)
                         val bitmap = ImageDecoder.decodeBitmap(source)
-                        uploadImageView.setImageBitmap(bitmap)
+                        imageView5.setImageBitmap(bitmap)
                     }
                     else
                     {
                         val  bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,selectedPicture)
-                        uploadImageView.setImageBitmap(bitmap)
+                        imageView5.setImageBitmap(bitmap)
                     }
 
                 }
@@ -156,7 +156,7 @@ class UploadActivity : AppCompatActivity() {
 
                     val postMap = hashMapOf<String,Any>()
 
-                    postMap.put("downloadUrl","null")
+                    postMap.put("downloadUrl","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Faf3a4b69-6386-400c-90aa-6595b228f041.jpg?alt=media&token=d5d9e82f-bd9f-4856-9e20-bad190b156ab")
                     postMap.put("userEmail",auth.currentUser!!.email.toString())
                     postMap.put("Questions",questiontext.text.toString())
                     postMap.put("date",com.google.firebase.Timestamp.now())

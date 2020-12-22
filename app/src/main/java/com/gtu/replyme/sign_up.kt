@@ -50,7 +50,7 @@ class sign_up : AppCompatActivity() {
 
                 postMap.put("userEmail",auth.currentUser!!.email.toString())
                 postMap.put("userNickName",Username.text.toString())
-
+                postMap.put("profilPhoto","null")
 
                 db.collection("Users").document(userId).collection("UsersData").add(postMap)
 

@@ -1,5 +1,6 @@
 package com.gtu.replyme
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,7 +14,8 @@ class SettingsActivity : AppCompatActivity() {
 
     }
     fun editUserPhoto(view: View) {
-
+        val intent = Intent(applicationContext,EditPhoto::class.java)
+        startActivity(intent)
     }
     fun changePassword(view: View) {
 

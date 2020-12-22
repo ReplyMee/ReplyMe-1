@@ -46,6 +46,11 @@ class FeedActivity : AppCompatActivity() {
         {
             logoutfun()
         }
+        else if (item.itemId==  R.id.profile)
+        {
+            val intent = Intent(applicationContext,ProfileActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 
