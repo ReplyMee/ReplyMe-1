@@ -6,4 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
+    <Button
+        android:id="@+id/editName"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/editnamebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/editPhoto"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/editphotobtn"
+        app:layout_constraintEnd_toEndOf="@+id/editName"
+        app:layout_constraintStart_toStartOf="@+id/editName"
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+    <Button
+        android:id="@+id/changePassword"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/changepasswordbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPhoto" />
+
+    <Button
+        android:id="@+id/editContact"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/editcontactbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePassword" />
+
+    <Button
+        android:id="@+id/logoutbtn"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/logoutbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editContact" />
 </androidx.constraintlayout.widget.ConstraintLayout>

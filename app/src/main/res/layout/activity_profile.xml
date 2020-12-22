@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/ProfilePhoto"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_profile" />
@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/UserName"
         android:layout_width="100dp"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:text="TextView"
         android:textColor="#000000"
         android:textStyle="bold"
