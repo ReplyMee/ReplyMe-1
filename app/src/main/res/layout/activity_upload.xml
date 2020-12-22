@@ -12,47 +12,48 @@
         android:ems="10"
         android:hint="Question"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/uploadPicture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="152dp"
         android:layout_height="58dp"
-        android:layout_marginBottom="154dp"
         android:background="@drawable/custom_button"
         android:onClick="uploadbutton"
         android:text="upload"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/questiontext" />
+        app:layout_constraintEnd_toEndOf="@+id/questiontext"
+        app:layout_constraintTop_toBottomOf="@+id/uploadPicture" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add_q" />
+        app:srcCompat="@drawable/add" />
 
     <Button
         android:id="@+id/uploadPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:background="@drawable/uploadscreen_picture_button"
         android:onClick="questionview"
         android:text="+ pıcture"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/questiontext" />
+        app:layout_constraintStart_toStartOf="@+id/questiontext"
+        app:layout_constraintTop_toBottomOf="@+id/questiontext" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="259dp"
-        android:layout_height="122dp"
+        android:layout_width="326dp"
+        android:layout_height="136dp"
         android:layout_marginTop="110dp"
-        app:layout_constraintBottom_toTopOf="@+id/questiontext"
+        app:layout_constraintEnd_toEndOf="@+id/questiontext"
         app:layout_constraintStart_toStartOf="@+id/questiontext"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/aaaaaa" />
