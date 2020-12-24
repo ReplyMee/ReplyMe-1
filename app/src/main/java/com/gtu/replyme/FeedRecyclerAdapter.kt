@@ -24,6 +24,7 @@ class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private
     override fun getItemCount(): Int {
 
        return userEmailArray.size
+
     }
 
 
@@ -31,7 +32,6 @@ class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private
         holder.recyclerEmailText?.text=userEmailArray[position]
         holder.recyclerQuestionText?.text = userQuestionArray[position]
         Picasso.get().load(userImageArray[position]).into(holder.recyclerImageView)
-
 
     }
 

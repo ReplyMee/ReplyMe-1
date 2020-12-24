@@ -11,7 +11,8 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
     }
     fun editUserName(view: View) {
-
+        val intent = Intent(applicationContext,editNickName::class.java)
+        startActivity(intent)
     }
     fun editUserPhoto(view: View) {
         val intent = Intent(applicationContext,EditPhoto::class.java)
@@ -24,6 +25,6 @@ class SettingsActivity : AppCompatActivity() {
 
     }
     fun logOut(view: View) {
-
+        finishAffinity()
     }
 }

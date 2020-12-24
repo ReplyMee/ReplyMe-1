@@ -125,6 +125,7 @@ class UploadActivity : AppCompatActivity() {
 
 
                     postMap.put("downloadUrl",downloadUrl)
+
                     postMap.put("userEmail",auth.currentUser!!.email.toString())
                     postMap.put("Questions",questiontext.text.toString())
                     postMap.put("date",com.google.firebase.Timestamp.now())

@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_feed.*
+import kotlinx.android.synthetic.main.recycler_view_row.*
 
 class FeedActivity : AppCompatActivity() {
 
@@ -17,7 +19,7 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var db : FirebaseFirestore
 
     private lateinit var userId : String
-
+    var tttest = "0"
     var userEmailFromFB :ArrayList<String> = ArrayList()
     var userQuestionFromFB :ArrayList<String> = ArrayList()
     var userImageFromFB :ArrayList<String> = ArrayList() //url adres
@@ -137,6 +139,21 @@ class FeedActivity : AppCompatActivity() {
             }
         }
     }
+    fun addAnswer(view : View)
+    {
+
+        val intent = Intent(applicationContext,AnswersActivity::class.java)
+        //intent.putExtra("postId",tttest)
+        startActivity(intent)
+
+
+    }
+    fun test(view : View)
+    {
+
+        println(recyclerEmailText.text)
+    }
+
 
 
 }

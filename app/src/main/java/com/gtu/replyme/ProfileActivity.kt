@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_log_in.*
 import kotlinx.android.synthetic.main.activity_profile.*
 
+
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var  auth : FirebaseAuth
@@ -39,9 +40,71 @@ class ProfileActivity : AppCompatActivity() {
 
         println(userId)
 
-        db.collection("Users").document(userId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
 
-         if(exception !=null)
+
+
+
+
+
+
+
+
+
+
+        db.collection("Users").document(userId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
+            //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+            if(exception !=null)
+            {
+                Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+            }
+
+            else
+            {
+                if(snapshot != null&&!snapshot.isEmpty)
+                {
+
+                    val documents= snapshot.documents
+                    for (document in documents)
+                    {
+                      val docId=document.id;
+
+                        //    val downloadUrl = document.get("downloadUrl") as String
+                        //db.collection("Users").document(userId).collection("UsersData").document(docId).update("ProfilPhoto","assssssssssss")
+                        val urlPP :String  = document.get("profilPhoto") as String
+
+                        Picasso.get().load(urlPP).into(ProfilePhoto)
+                        val userNickName = document.get("userNickName") as String
+                        UserName.text=userNickName
+                    }
+
+
+                }
+                else
+                {
+                    println("elseeeee")
+                }
+
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       /* db.collection("Users").document(userId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
+
+
+            if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
             }
@@ -67,13 +130,13 @@ class ProfileActivity : AppCompatActivity() {
 
 
             }
-        }
+        }*/
 
 
        // db.collection("Users").document(userId).collection("ProfilPhoto").document()
 
 
-        db.collection("Users").document(userId).collection("ProfilPhoto").addSnapshotListener { snapshot, exception ->
+        db.collection("Users").document(userId).collection("UserData").addSnapshotListener { snapshot, exception ->
 
             if(exception !=null)
             {
@@ -89,9 +152,14 @@ class ProfileActivity : AppCompatActivity() {
                     for (document in documents)
                     {
 
-                        val urlPP = document.get("downloadUrl") as String
+                        val urlPP = document.get("profilPhoto") as String
+                        println("url=\n")
+                        println(urlPP)
                         Picasso.get().load(urlPP).into(ProfilePhoto)
                     }
+                }
+                else{
+                    println("anaaaaaaaaaaaa")
                 }
             }
         }
