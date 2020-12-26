@@ -51,7 +51,7 @@
         android:id="@+id/logoutbtn"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="@drawable/logoutbtn"
+        android:background="@drawable/signout"
         android:onClick="logOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
