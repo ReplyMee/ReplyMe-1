@@ -35,6 +35,7 @@ class editNickName : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_nick_name)
+
         auth  = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
         userId = auth.uid.toString()

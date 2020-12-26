@@ -5,6 +5,6 @@
         android:id="@+id/profile"/>
     <item
         android:id="@+id/logout"
-        android:title="Logout"></item>
+        android:title="Close "></item>
 
 </menu>

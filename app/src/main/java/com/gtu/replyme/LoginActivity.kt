@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.activity_log_in.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
+
+
     var loginSuccessFull = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

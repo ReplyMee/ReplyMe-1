@@ -77,10 +77,7 @@ class Myquestions : AppCompatActivity() {
     }
 
     fun logoutfun(){
-        auth.signOut()
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        finishAffinity()
     }
 
     fun getDataFromFireStore()

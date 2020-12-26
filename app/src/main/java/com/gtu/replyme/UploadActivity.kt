@@ -28,6 +28,7 @@ class UploadActivity : AppCompatActivity() {
     var selectedPicture : Uri?=null
     private lateinit var db : FirebaseFirestore
     private lateinit var auth : FirebaseAuth
+
     private lateinit var userId : String
 
     override fun onCreate(savedInstanceState: Bundle?) {

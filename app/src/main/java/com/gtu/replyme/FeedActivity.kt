@@ -79,10 +79,11 @@ class FeedActivity : AppCompatActivity() {
     }
 
     fun logoutfun(){
-        auth.signOut()
+       /* auth.signOut()
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
-        finish()
+        finish()*/
+        finishAffinity()
     }
 
     fun getDataFromFireStore()
