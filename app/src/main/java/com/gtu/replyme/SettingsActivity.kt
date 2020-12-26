@@ -19,7 +19,8 @@ class SettingsActivity : AppCompatActivity() {
         startActivity(intent)
     }
     fun changePassword(view: View) {
-
+        val intent = Intent(applicationContext,ChangePasswordActivity::class.java)
+        startActivity(intent)
     }
     fun editUserContact(view: View) {
 

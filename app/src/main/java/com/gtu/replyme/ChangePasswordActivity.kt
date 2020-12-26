@@ -1,0 +1,16 @@
+package com.gtu.replyme
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+
+class ChangePasswordActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_change_password)
+    }
+
+    fun changePassword (view: View) {
+
+    }
+}
