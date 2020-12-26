@@ -26,7 +26,7 @@
         android:text="upload"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/uploadPicture" />
+        app:layout_constraintTop_toBottomOf="@+id/questionPicture" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -38,7 +38,7 @@
         app:srcCompat="@drawable/add" />
 
     <Button
-        android:id="@+id/uploadPicture"
+        android:id="@+id/questionPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

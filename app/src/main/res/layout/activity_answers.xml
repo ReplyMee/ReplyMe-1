@@ -5,57 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/questiontext"
-        android:layout_width="326dp"
-        android:layout_height="160dp"
-        android:ems="10"
-        android:hint="Question"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="152dp"
         android:layout_height="58dp"
         android:background="@drawable/custom_button"
-        android:onClick="uploadbutton"
-        android:text="upload"
+        android:onClick="answerbutton"
+        android:text="add answer"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/uploadPicture" />
+        app:layout_constraintEnd_toEndOf="@+id/answertext"
+        app:layout_constraintTop_toBottomOf="@+id/questionPicture" />
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <Button
+        android:id="@+id/questionPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/uploadscreen_picture_button"
+        android:onClick="answerview"
+        android:text="+ pıcture"
+        app:layout_constraintStart_toStartOf="@+id/answertext"
+        app:layout_constraintTop_toBottomOf="@+id/answertext" />
+
+    <ImageView
+        android:id="@+id/answerview"
+        android:layout_width="326dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="158dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add" />
-
-    <Button
-        android:id="@+id/uploadPicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/uploadscreen_picture_button"
-        android:onClick="questionview"
-        android:text="+ pıcture"
-        app:layout_constraintStart_toStartOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/questiontext" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="326dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="110dp"
-        app:layout_constraintEnd_toEndOf="@+id/questiontext"
-        app:layout_constraintStart_toStartOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/aaaaaa" />
+
+    <EditText
+        android:id="@+id/answertext"
+        android:layout_width="326dp"
+        android:layout_height="160dp"
+        android:ems="10"
+        android:hint="Your Answer"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/answerview"
+        app:layout_constraintStart_toStartOf="@+id/answerview"
+        app:layout_constraintTop_toBottomOf="@+id/answerview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

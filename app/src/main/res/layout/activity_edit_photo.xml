@@ -23,6 +23,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="50dp"
         android:text="Change"
+        android:background="@drawable/forgot_password_button"
         app:layout_constraintEnd_toEndOf="@+id/profilePhoto"
         app:layout_constraintStart_toStartOf="@+id/profilePhoto"
         app:layout_constraintTop_toBottomOf="@+id/profilePhoto" />
