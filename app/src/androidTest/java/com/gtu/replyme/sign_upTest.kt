@@ -17,7 +17,7 @@ class sign_upTest{
     @JvmField
     @Rule
     val rule: ActivityTestRule<sign_up> = ActivityTestRule(sign_up::class.java)
-    //private lateinit var auth : FirebaseAuth
+    private lateinit var auth : FirebaseAuth
 /*
 *Sign-Up Activity xml dosyasını kontol eden testler:
 */
@@ -38,6 +38,8 @@ class sign_upTest{
         onView(withId(R.id.Password)).perform(typeText("123456"))
         onView(withId(R.id.PasswordAgain)).perform(typeText("123456"), closeSoftKeyboard())
         onView(withId(R.id.signupbutton)).perform(click())
+        auth = FirebaseAuth.getInstance()
+        assertNotNull("User can not Sign Up", auth)
 
     }
 
