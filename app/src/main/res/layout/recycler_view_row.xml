@@ -16,7 +16,7 @@
             android:scaleType="fitCenter"
             android:layout_marginEnd="10dp"/>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="271dp"
             android:layout_height="130dp"
             android:orientation="vertical">
            <LinearLayout
@@ -24,20 +24,20 @@
                android:layout_height="wrap_content"
                android:orientation="horizontal">
             <TextView
-                android:layout_width="120dp"
+                android:layout_width="125dp"
                 android:layout_height="30dp"
                 android:id="@+id/recyclerEmailText"
                 android:layout_margin="5dp"
                 android:textSize="12dp" />
                <TextView
-                   android:layout_width="120dp"
+                   android:layout_width="125dp"
                    android:layout_height="30dp"
                    android:id="@+id/recyclerDateText"
                    android:layout_margin="5dp"
                    android:textSize="12dp" />
            </LinearLayout>
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="261dp"
                 android:layout_height="80dp"
                 android:id="@+id/recyclerQuestionText"
                 android:layout_margin="8dp"
