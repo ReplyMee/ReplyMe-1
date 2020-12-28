@@ -30,16 +30,16 @@
         android:id="@+id/answerview"
         android:layout_width="326dp"
         android:layout_height="136dp"
-        android:layout_marginTop="158dp"
+        android:layout_marginTop="130dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/aaaaaa" />
+        app:srcCompat="@drawable/arkaplan" />
 
     <EditText
         android:id="@+id/answertext"
         android:layout_width="326dp"
-        android:layout_height="160dp"
+        android:layout_height="190dp"
         android:ems="10"
         android:hint="Your Answer"
         android:inputType="textPersonName"
