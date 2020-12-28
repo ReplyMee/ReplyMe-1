@@ -1,66 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/recyclerEmailText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:onClick="test"
-        android:paddingLeft="15dp"
-        android:paddingTop="8dp"
-        android:text="TextView" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+        android:layout_height="130dp"
+        android:orientation="horizontal">
         <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:id="@+id/recyclerImageView"
-            android:layout_width="129dp"
-            android:layout_height="150dp"
-
-            android:onClick="photo"
-            app:layout_constraintEnd_toStartOf="@+id/recyclerQuestionText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/recyclerQuestionText"
-            android:layout_width="282dp"
-            android:layout_height="150dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="@+id/recyclerImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recyclerImageView" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/addanswer"
-            android:layout_width="206dp"
-            android:layout_height="55dp"
-            android:background="@drawable/main_button"
-            android:onClick="addAnswer"
-            android:text="Add Answer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/seeanswer"
-            android:layout_width="205dp"
-            android:layout_height="53dp"
-            android:text="See Answer"
-            android:background="@drawable/main_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/addanswer" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerEmailText"
+                android:layout_margin="8dp"
+                android:textSize="28dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerQuestionText"
+                android:layout_margin="8dp"
+                android:textSize="16dp"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

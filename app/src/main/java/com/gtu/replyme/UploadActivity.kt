@@ -158,7 +158,7 @@ class UploadActivity : AppCompatActivity() {
 
                     val postMap = hashMapOf<String,Any>()
 
-                    postMap.put("downloadUrl","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Faf3a4b69-6386-400c-90aa-6595b228f041.jpg?alt=media&token=d5d9e82f-bd9f-4856-9e20-bad190b156ab")
+                    postMap.put("downloadUrl","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c")
                     postMap.put("userEmail",auth.currentUser!!.email.toString())
                     postMap.put("Questions",questiontext.text.toString())
                     postMap.put("date",com.google.firebase.Timestamp.now())

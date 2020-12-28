@@ -7,13 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 
-class FeedActivity : AppCompatActivity() {
+class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
@@ -23,6 +24,7 @@ class FeedActivity : AppCompatActivity() {
     var userEmailFromFB :ArrayList<String> = ArrayList()
     var userQuestionFromFB :ArrayList<String> = ArrayList()
     var userImageFromFB :ArrayList<String> = ArrayList() //url adres
+    var postIdFromFB : ArrayList<String> = ArrayList()
 
     var adapter : FeedRecyclerAdapter?=null
 
@@ -58,6 +60,7 @@ class FeedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_feed)
 
         auth = FirebaseAuth.getInstance()
@@ -70,8 +73,9 @@ class FeedActivity : AppCompatActivity() {
         //recyclerview ayarları
         var layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-
-        adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB)
+        recyclerView.addItemDecoration(DividerItemDecoration(this,1))
+        //  carRecycler.addItemDecoration(DividerItemDecoration(this,1))
+        adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB,this,postIdFromFB)
         recyclerView.adapter = adapter
 
 
@@ -108,7 +112,7 @@ class FeedActivity : AppCompatActivity() {
                    userEmailFromFB.clear()
                    userQuestionFromFB.clear()
                    userImageFromFB.clear()
-
+                   postIdFromFB.clear()
                        val documents= snapshot.documents
                        for (document in documents)
                        {
@@ -117,7 +121,7 @@ class FeedActivity : AppCompatActivity() {
                            val question = document.get("Questions") as String
                            val timestamp = document.get("date") as com.google.firebase.Timestamp
                            val date = timestamp.toDate()
-
+                           val postId = document.id as String
                            val userEmail = document.get("userEmail") as String
                            val downloadUrl = document.get("downloadUrl") as String
 
@@ -129,7 +133,7 @@ class FeedActivity : AppCompatActivity() {
                            userEmailFromFB.add(userEmail)
                            userQuestionFromFB.add(question)
                            userImageFromFB.add(downloadUrl)
-
+                           postIdFromFB.add(postId)
                            adapter!!.notifyDataSetChanged()
                        }
 
@@ -140,7 +144,7 @@ class FeedActivity : AppCompatActivity() {
             }
         }
     }
-    fun addAnswer(view : View)
+ /*   fun addAnswer(view : View)
     {
 
         val intent = Intent(applicationContext,AnswersActivity::class.java)
@@ -148,13 +152,29 @@ class FeedActivity : AppCompatActivity() {
         startActivity(intent)
 
 
-    }
-    fun test(view : View)
+    }*/
+    /*fun test(view : View)
     {
 
         println(recyclerEmailText.text)
+    }*/
+
+    override fun onItemClick(position: Int,uidImage : String,Email : String, Question :String, Image:String) {
+    //    Toast.makeText(this, questions.toString(), Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(applicationContext,postClicked::class.java)
+        intent.putExtra("postId",uidImage)
+        intent.putExtra("Email",Email)
+        intent.putExtra("Question",Question)
+        intent.putExtra("Image",Image)
+        startActivity(intent)
+
+      /*  val intent = Intent(this, CarDetailsActivity::class.java)
+        intent.putExtra("CARNAME", item.name)
+        intent.putExtra("CARDESC", item.description)
+        intent.putExtra("CARLOGO", item.logo.toString())
+        startActivity(intent)*/
+
     }
-
-
 
 }

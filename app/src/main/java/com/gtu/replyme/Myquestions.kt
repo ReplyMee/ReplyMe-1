@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_feed.*
 
-class Myquestions : AppCompatActivity() {
+class Myquestions : AppCompatActivity(), OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
@@ -21,7 +21,7 @@ class Myquestions : AppCompatActivity() {
     var userEmailFromFB :ArrayList<String> = ArrayList()
     var userQuestionFromFB :ArrayList<String> = ArrayList()
     var userImageFromFB :ArrayList<String> = ArrayList() //url adres
-
+    var postIdFromFB : ArrayList<String> = ArrayList()
     var adapter : FeedRecyclerAdapter?=null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,7 +69,7 @@ class Myquestions : AppCompatActivity() {
         var layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-        adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB)
+        adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB,this,postIdFromFB)
         recyclerView.adapter = adapter
 
 
@@ -133,6 +133,27 @@ class Myquestions : AppCompatActivity() {
             }
         }
     }
+    override fun onItemClick(position: Int,uidImage : String,Email : String, Question :String, Image:String) {
+        //    Toast.makeText(this, questions.toString(), Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(applicationContext,postClicked::class.java)
+        intent.putExtra("postId",uidImage)
+        intent.putExtra("Email",Email)
+        intent.putExtra("Question",Question)
+        intent.putExtra("Image",Image)
+        startActivity(intent)
+
+        /*  val intent = Intent(this, CarDetailsActivity::class.java)
+          intent.putExtra("CARNAME", item.name)
+          intent.putExtra("CARDESC", item.description)
+          intent.putExtra("CARLOGO", item.logo.toString())
+          startActivity(intent)*/
+
+    }
 
 
 }
+
+
+
+

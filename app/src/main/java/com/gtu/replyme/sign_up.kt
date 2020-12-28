@@ -50,7 +50,7 @@ class sign_up : AppCompatActivity() {
 
                 postMap.put("userEmail",auth.currentUser!!.email.toString())
                 postMap.put("userNickName",Username.text.toString())
-                postMap.put("profilPhoto","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2F5b3dfff4-efa9-4129-8f1f-5d8789c00de1.jpg?alt=media&token=2a583f4b-006d-4fa6-8d62-282a7f42fa80")
+                postMap.put("profilPhoto","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c")
 
                 db.collection("Users").document(userId).collection("UsersData").add(postMap)
 

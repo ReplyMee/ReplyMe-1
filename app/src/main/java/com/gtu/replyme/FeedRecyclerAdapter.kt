@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private val userQuestionArray : ArrayList<String>,private val userImageArray : ArrayList<String>) : RecyclerView.Adapter<FeedRecyclerAdapter.PostHolder>() {
+class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private val userQuestionArray : ArrayList<String>,
+                           private val userImageArray : ArrayList<String>, var clickListner: OnCarItemClickListner, private val postIdFromFB : ArrayList<String>) : RecyclerView.Adapter<FeedRecyclerAdapter.PostHolder>() {
+
 //(private val userEmailArray: ArrayList<String>,private val userQuestionArray : ArrayList<String>,private val userImageArray : ArrayList<String>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedRecyclerAdapter.PostHolder {
@@ -32,6 +34,10 @@ class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private
         holder.recyclerEmailText?.text=userEmailArray[position]
         holder.recyclerQuestionText?.text = userQuestionArray[position]
         Picasso.get().load(userImageArray[position]).into(holder.recyclerImageView)
+        holder.test(clickListner,postIdFromFB[position],
+            userEmailArray[position],
+            userQuestionArray[position],
+            userImageArray[position])
 
     }
 
@@ -50,9 +56,22 @@ class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private
 
 
         }
+        fun test(action: OnCarItemClickListner,postId : String,Email :String,
+                 Question :String, Image:String)
+        {
+
+            itemView.setOnClickListener {
+                action.onItemClick(adapterPosition,postId,Email,Question,Image)
+
+            }
+        }
+
 
     }
 
 
 }
 
+interface OnCarItemClickListner{
+    fun onItemClick(position: Int,postId: String, Email:String,Question: String,Image: String)
+}
