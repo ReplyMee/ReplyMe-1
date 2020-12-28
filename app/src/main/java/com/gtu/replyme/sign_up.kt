@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_upload.*
 
 
-
 class sign_up : AppCompatActivity() {
     private lateinit var db : FirebaseFirestore
     private lateinit var auth : FirebaseAuth
@@ -38,10 +37,12 @@ class sign_up : AppCompatActivity() {
         val username = Username
         val paswordAgain= PasswordAgain.text.toString()
         val password = Password.text.toString()
+
         // Kontrol edilmesi gerekiyor
         if (password != paswordAgain ){
 
         }
+
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
             if(task.isSuccessful)
             {
@@ -77,6 +78,11 @@ class sign_up : AppCompatActivity() {
         val intent = Intent(applicationContext,LoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun deneme(password : Int ,  passwordAgain: Int ) : Boolean {
+
+        return true
     }
 
 }

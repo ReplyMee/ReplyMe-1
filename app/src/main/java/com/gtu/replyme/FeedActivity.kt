@@ -83,11 +83,11 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun logoutfun(){
-       /* auth.signOut()
+        auth.signOut()
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
-        finish()*/
-        finishAffinity()
+       // finish()
+        //finishAffinity()
     }
 
     fun getDataFromFireStore()
