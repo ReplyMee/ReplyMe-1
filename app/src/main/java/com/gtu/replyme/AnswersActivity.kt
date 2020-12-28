@@ -88,11 +88,11 @@ class AnswersActivity : AppCompatActivity() {
                     if (Build.VERSION.SDK_INT >= 28) {
                         val source = ImageDecoder.createSource(contentResolver, selectedPicture!!)
                         val bitmap = ImageDecoder.decodeBitmap(source)
-                        imageView5.setImageBitmap(bitmap)
+                        answerview.setImageBitmap(bitmap)
                     } else {
                         val bitmap =
                             MediaStore.Images.Media.getBitmap(this.contentResolver, selectedPicture)
-                        imageView5.setImageBitmap(bitmap)
+                        answerview.setImageBitmap(bitmap)
                     }
 
                 }
