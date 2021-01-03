@@ -39,7 +39,7 @@ class postClicked : AppCompatActivity() {
     }
     fun showAnswer(view: View)
     {
-        val intent = Intent(applicationContext,AnswersActivity::class.java)
+        val intent = Intent(applicationContext,showAnswer()::class.java)
         intent.putExtra("postId",postId)
         startActivity(intent)
     }
