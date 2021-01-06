@@ -5,23 +5,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_feed.*
+import kotlinx.android.synthetic.main.recycler_view_row.*
 
-class Myquestions : AppCompatActivity(), OnCarItemClickListner {
+class Myquestions : AppCompatActivity() , OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
 
-    private lateinit var userId : String
 
+    private lateinit var userId : String
+    var tttest = "0"
     var userEmailFromFB :ArrayList<String> = ArrayList()
     var userQuestionFromFB :ArrayList<String> = ArrayList()
     var userImageFromFB :ArrayList<String> = ArrayList() //url adres
     var postIdFromFB : ArrayList<String> = ArrayList()
+
     var adapter : FeedRecyclerAdapter?=null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -56,6 +61,7 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_myquestions)
 
         auth = FirebaseAuth.getInstance()
@@ -68,7 +74,8 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
         //recyclerview ayarları
         var layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-
+        recyclerView.addItemDecoration(DividerItemDecoration(this,1))
+        //  carRecycler.addItemDecoration(DividerItemDecoration(this,1))
         adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB,this,postIdFromFB)
         recyclerView.adapter = adapter
 
@@ -77,7 +84,11 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
     }
 
     fun logoutfun(){
-        finishAffinity()
+        auth.signOut()
+        val intent = Intent(applicationContext, LoginActivity::class.java)
+        startActivity(intent)
+        // finish()
+        //finishAffinity()
     }
 
     fun getDataFromFireStore()
@@ -86,7 +97,8 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
         userId = auth.uid.toString()
         println(userId)
 
-        db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+       // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
+               db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
@@ -101,7 +113,7 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
                     userEmailFromFB.clear()
                     userQuestionFromFB.clear()
                     userImageFromFB.clear()
-
+                    postIdFromFB.clear()
                     val documents= snapshot.documents
                     for (document in documents)
                     {
@@ -110,7 +122,7 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
                         val question = document.get("Questions") as String
                         val timestamp = document.get("date") as com.google.firebase.Timestamp
                         val date = timestamp.toDate()
-
+                        val postId = document.id as String
                         val userEmail = document.get("userEmail") as String
                         val downloadUrl = document.get("downloadUrl") as String
 
@@ -122,7 +134,7 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
                         userEmailFromFB.add(userEmail)
                         userQuestionFromFB.add(question)
                         userImageFromFB.add(downloadUrl)
-
+                        postIdFromFB.add(postId)
                         adapter!!.notifyDataSetChanged()
                     }
 
@@ -133,6 +145,21 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
             }
         }
     }
+    /*   fun addAnswer(view : View)
+       {
+
+           val intent = Intent(applicationContext,AnswersActivity::class.java)
+           //intent.putExtra("postId",tttest)
+           startActivity(intent)
+
+
+       }*/
+    /*fun test(view : View)
+    {
+
+        println(recyclerEmailText.text)
+    }*/
+
     override fun onItemClick(position: Int,uidImage : String,Email : String, Question :String, Image:String) {
         //    Toast.makeText(this, questions.toString(), Toast.LENGTH_SHORT).show()
 
@@ -151,9 +178,4 @@ class Myquestions : AppCompatActivity(), OnCarItemClickListner {
 
     }
 
-
 }
-
-
-
-
