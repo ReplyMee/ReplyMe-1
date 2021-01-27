@@ -60,6 +60,7 @@ class sign_up : AppCompatActivity() {
 
 
                 val intent = Intent(applicationContext,FeedActivity::class.java)
+                intent.putExtra("catagory","null")
                 startActivity(intent)
                 finish()
             }

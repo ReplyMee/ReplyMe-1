@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 
@@ -79,8 +80,6 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
         adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB,this,postIdFromFB)
         recyclerView.adapter = adapter
 
-
-
     }
 
     fun logoutfun(){
@@ -98,7 +97,7 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
         println(userId)
 
        // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
-               db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+               db.collection("Users").document(userId).collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()

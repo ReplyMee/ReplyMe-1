@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         {
 
             val intent = Intent(applicationContext, FeedActivity::class.java)
+            intent.putExtra("catagory","null")
             startActivity(intent)
             finish()
         }
@@ -40,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Welcome: ${auth.currentUser?.email.toString()}",
                     Toast.LENGTH_LONG).show()
                 val intent = Intent(applicationContext,FeedActivity::class.java)
+                intent.putExtra("catagory","null")
                 startActivity(intent)
                 finish()
             }

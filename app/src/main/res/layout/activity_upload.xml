@@ -5,57 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnTest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/spinner_bg"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/questionPicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questiontext" />
+
     <EditText
         android:id="@+id/questiontext"
         android:layout_width="326dp"
-        android:layout_height="180dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:hint="Question"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/spnTest"
+        app:layout_constraintStart_toStartOf="@+id/spnTest"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="152dp"
-        android:layout_height="58dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="134dp"
         android:background="@drawable/custom_button"
         android:onClick="uploadbutton"
         android:text="upload"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/questionPicture" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add" />
+        app:layout_constraintTop_toBottomOf="@+id/questionPicture" />
 
     <Button
         android:id="@+id/questionPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="22dp"
         android:background="@drawable/uploadscreen_picture_button"
         android:onClick="questionview"
         android:text="+ pıcture"
-        app:layout_constraintStart_toStartOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/questiontext" />
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/spnTest"
+        app:layout_constraintTop_toBottomOf="@+id/spnTest" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="326dp"
-        android:layout_height="136dp"
-        android:layout_marginTop="90dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/questiontext"
         app:layout_constraintEnd_toEndOf="@+id/questiontext"
         app:layout_constraintStart_toStartOf="@+id/questiontext"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arkaplan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".showAnswer"></activity>
         <activity android:name=".postClicked" />
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".editNickName" />

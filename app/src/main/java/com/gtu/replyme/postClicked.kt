@@ -44,4 +44,11 @@ class postClicked : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun openUser(view : View)
+    {
+        /*val intent = Intent(applicationContext,showAnswer()::class.java)
+        intent.putExtra("postId",postId)
+        startActivity(intent)*/
+    }
+
 }
