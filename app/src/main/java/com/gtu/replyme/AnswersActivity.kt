@@ -27,10 +27,11 @@ import java.util.*
 class AnswersActivity : AppCompatActivity() {
     var postId = ""
     var selectedPicture: Uri? = null
+    var answered = false
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var userId: String
+    lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,8 @@ class AnswersActivity : AppCompatActivity() {
         userId = auth.uid.toString()
         var intent = intent
         postId = intent.getStringExtra("postId")
+
+
     }
 
     fun fotose(View: View) {
@@ -107,6 +110,8 @@ class AnswersActivity : AppCompatActivity() {
 
         val uuid = UUID.randomUUID()
         val imageName = "$uuid.jpg"
+
+        answered = true
 
         val storage = FirebaseStorage.getInstance()
         val reference = storage.reference

@@ -18,9 +18,11 @@ import kotlinx.android.synthetic.main.recycler_view_row.*
 
 class postClicked : AppCompatActivity() {
     var postId = ""
+    var isclicked = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_clicked)
+
         var intent = intent
         postId =  intent.getStringExtra("postId")
         val eMail = intent.getStringExtra("Email")
@@ -29,16 +31,17 @@ class postClicked : AppCompatActivity() {
         Picasso.get().load(ımageUrl).into(imageView2)
         email.text=eMail.toString()
         soru.text=Question.toString()
-
     }
     fun reply(view: View)
     {
+        isclicked = true
         val intent = Intent(applicationContext,AnswersActivity::class.java)
         intent.putExtra("postId",postId)
         startActivity(intent)
     }
     fun showAnswer(view: View)
     {
+        isclicked = true
         val intent = Intent(applicationContext,showAnswer()::class.java)
         intent.putExtra("postId",postId)
         startActivity(intent)

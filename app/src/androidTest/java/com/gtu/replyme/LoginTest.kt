@@ -40,13 +40,12 @@ class LoginTest {
     private lateinit var auth : FirebaseAuth
 
 
-    //val l1 = LoginActivity()
     /*
-    *Login Activity xml dosyasını kontol eden testler:
+    *Login Activity kontol eden testler:
     */
 
     @Before
-   fun logout(){
+   fun setup(){
         //val rules: ActivityTestRule<FeedActivity> = ActivityTestRule(FeedActivity::class.java)
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
@@ -57,14 +56,7 @@ class LoginTest {
 
     }
 
-   /* @After
-    fun deneme(){
-        println("BİTTİ")
-        auth = FirebaseAuth.getInstance()
-        val currentUser = auth.currentUser
-        assertEquals("PATLADI", null , currentUser)
-    }*/
-   //
+
     @Test
    fun user_can_switch_signUP(){
 
@@ -86,11 +78,6 @@ class LoginTest {
 
         auth = FirebaseAuth.getInstance()
         assertNotNull("Authentication Failed",auth)
-    //assert
-
-       // assert(rule.activity.loginSuccessFull.equals(false))
-      // assert(auth.currentUser?.email.toString() == "muhammed2132@gmail.com")
-      //  assertNotNull
 
     }
 

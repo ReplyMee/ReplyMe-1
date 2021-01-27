@@ -27,6 +27,7 @@ import kotlin.collections.ArrayList
 
 class UploadActivity : AppCompatActivity() {
 
+    var isupload = false
     var selectedPicture : Uri?=null
     private lateinit var db : FirebaseFirestore
     private lateinit var auth : FirebaseAuth
@@ -247,9 +248,7 @@ class UploadActivity : AppCompatActivity() {
             }
 
         }
-
-
-
+                    isupload = true
 
     }
 

@@ -12,15 +12,16 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class sign_upTest{
+class sign_up_Test{
 
     @JvmField
     @Rule
     val rule: ActivityTestRule<sign_up> = ActivityTestRule(sign_up::class.java)
     private lateinit var auth : FirebaseAuth
 /*
-*Sign-Up Activity xml dosyasını kontol eden testler:
+*Sign-Up Activity kontol eden testler:
 */
+
     @Test
     fun user_can_edit_texts(){
 

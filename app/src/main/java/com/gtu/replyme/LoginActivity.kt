@@ -30,11 +30,16 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
     }
+
     fun signInClick(view : View)
     {
 
         val email = emaill.text.toString()
         val password = Password.text.toString()
+         LogIn(email,password)
+    }
+    fun LogIn(email : String, password: String ){
+
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener {task ->
             if(task.isSuccessful)
             {

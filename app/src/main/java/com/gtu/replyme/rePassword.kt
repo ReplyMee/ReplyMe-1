@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 class rePassword : AppCompatActivity() {
 
     private lateinit var auth : FirebaseAuth
+    var mailSended = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,11 +18,15 @@ class rePassword : AppCompatActivity() {
         supportActionBar?.hide()
 
         auth = FirebaseAuth.getInstance()
+
+
+
     }
 
     fun sendEmail(view: View) {
         val email = Email_Send.text.toString()
 
+        mailSended = true;
 
         if(email.isEmpty()) {
             return
@@ -35,6 +40,7 @@ class rePassword : AppCompatActivity() {
             else {
                 Toast.makeText( this,"Email Not Sent", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 }

@@ -1,23 +1,19 @@
 package com.gtu.replyme
 
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import org.junit.Before
+
 import org.junit.Assert.*
-import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.junit.MockitoJUnit
+import org.mockito.junit.MockitoJUnitRunner
 
-class sign_upUTest{
-
-    var x = sign_up()
-
-    @Test
-    fun Is_deneme_correct(){
-
-        var actual = x.deneme(123456,123456)
-
-        //var expected = true
-
-        assertNotEquals("Deneme Not Passed",false,true)
+@RunWith(MockitoJUnitRunner::class)
+class sign_upTest {
 
 
 
-    }
 }

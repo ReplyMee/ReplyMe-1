@@ -1,4 +1,4 @@
-package com.gtu.replyme
+    package com.gtu.replyme
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -94,10 +94,12 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
     fun logoutfun(){
         auth.signOut()
+
+        println(auth)
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
        // finish()
-        //finishAffinity()
+        finishAffinity()
     }
 
 
@@ -105,7 +107,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
     {
        // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
-        println(userId)
+        //println(userId)
 
 
 
