@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F6F8FF"
     tools:context=".Categorys">
 
     <Button
@@ -11,8 +12,8 @@
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/music"
         android:onClick="music"
-        android:text="Music"
         app:layout_constraintEnd_toEndOf="@+id/button17"
         app:layout_constraintStart_toStartOf="@+id/button17"
         app:layout_constraintTop_toBottomOf="@+id/button17" />
@@ -21,8 +22,8 @@
         android:id="@+id/button6"
         android:layout_width="105dp"
         android:layout_height="100dp"
+        android:background="@drawable/auto"
         android:onClick="auto"
-        android:text="Auto"
         app:layout_constraintEnd_toEndOf="@+id/button18"
         app:layout_constraintStart_toStartOf="@+id/button18"
         app:layout_constraintTop_toTopOf="@+id/button4" />
@@ -34,7 +35,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:onClick="computer"
-        android:text="Computer"
+        android:background="@drawable/computer"
         app:layout_constraintEnd_toStartOf="@+id/button18"
         app:layout_constraintStart_toEndOf="@+id/button17"
         app:layout_constraintTop_toTopOf="@+id/button17" />
@@ -45,8 +46,8 @@
         android:layout_height="100dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/live"
         android:onClick="life"
-        android:text="Life"
         app:layout_constraintEnd_toStartOf="@+id/button6"
         app:layout_constraintStart_toEndOf="@+id/button4"
         app:layout_constraintTop_toTopOf="@+id/button4" />
@@ -56,8 +57,8 @@
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/code"
         android:onClick="code"
-        android:text="Code"
         app:layout_constraintEnd_toEndOf="@+id/button11"
         app:layout_constraintStart_toStartOf="@+id/button11"
         app:layout_constraintTop_toBottomOf="@+id/button11" />
@@ -66,8 +67,8 @@
         android:id="@+id/button10"
         android:layout_width="105dp"
         android:layout_height="100dp"
+        android:background="@drawable/law"
         android:onClick="law"
-        android:text="Law"
         app:layout_constraintEnd_toEndOf="@+id/button8"
         app:layout_constraintStart_toStartOf="@+id/button8"
         app:layout_constraintTop_toTopOf="@+id/button11" />
@@ -77,8 +78,8 @@
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/health"
         android:onClick="health"
-        android:text="Health"
         app:layout_constraintEnd_toEndOf="@+id/button4"
         app:layout_constraintStart_toStartOf="@+id/button4"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -87,8 +88,8 @@
         android:id="@+id/button12"
         android:layout_width="105dp"
         android:layout_height="100dp"
+        android:background="@drawable/travel"
         android:onClick="travel"
-        android:text="Travel"
         app:layout_constraintEnd_toEndOf="@+id/button6"
         app:layout_constraintStart_toStartOf="@+id/button6"
         app:layout_constraintTop_toTopOf="@+id/button11" />
@@ -98,8 +99,8 @@
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/ayt"
         android:onClick="ayt"
-        android:text="Ayt"
         app:layout_constraintEnd_toEndOf="@+id/button9"
         app:layout_constraintStart_toStartOf="@+id/button9"
         app:layout_constraintTop_toBottomOf="@+id/button9" />
@@ -108,8 +109,8 @@
         android:id="@+id/button14"
         android:layout_width="105dp"
         android:layout_height="100dp"
+        android:background="@drawable/tyt"
         android:onClick="tyt"
-        android:text="Tyt"
         app:layout_constraintEnd_toEndOf="@+id/button15"
         app:layout_constraintStart_toStartOf="@+id/button15"
         app:layout_constraintTop_toTopOf="@+id/button13" />
@@ -120,8 +121,8 @@
         android:layout_height="100dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/home"
         android:onClick="home"
-        android:text="Home"
         app:layout_constraintEnd_toStartOf="@+id/button16"
         app:layout_constraintStart_toEndOf="@+id/button9"
         app:layout_constraintTop_toTopOf="@+id/button9" />
@@ -130,8 +131,8 @@
         android:id="@+id/button16"
         android:layout_width="105dp"
         android:layout_height="100dp"
+        android:background="@drawable/sport"
         android:onClick="sport"
-        android:text="Sport"
         app:layout_constraintEnd_toEndOf="@+id/button12"
         app:layout_constraintStart_toStartOf="@+id/button12"
         app:layout_constraintTop_toTopOf="@+id/button9" />
@@ -142,8 +143,8 @@
         android:layout_height="100dp"
         android:layout_marginStart="33dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/gardening"
         android:onClick="gardening"
-        android:text="Gardening"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,8 +153,8 @@
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/pet"
         android:onClick="pet"
-        android:text="Pet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button17" />
 
@@ -162,8 +163,8 @@
         android:layout_width="105dp"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/other"
         android:onClick="others"
-        android:text="Others"
         app:layout_constraintEnd_toEndOf="@+id/button14"
         app:layout_constraintStart_toStartOf="@+id/button14"
         app:layout_constraintTop_toBottomOf="@+id/button14" />
@@ -172,8 +173,8 @@
         android:id="@+id/button20"
         android:layout_width="105dp"
         android:layout_height="100dp"
+        android:background="@drawable/art"
         android:onClick="art"
-        android:text="Art"
         app:layout_constraintEnd_toEndOf="@+id/button16"
         app:layout_constraintStart_toStartOf="@+id/button16"
         app:layout_constraintTop_toTopOf="@+id/button13" />
