@@ -1,4 +1,4 @@
-    package com.gtu.replyme
+package com.gtu.replyme
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 
@@ -19,9 +18,8 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-    private lateinit var catagory:String
-    private lateinit var userId : String
 
+    private lateinit var userId : String
     var tttest = "0"
     var userEmailFromFB :ArrayList<String> = ArrayList()
     var userQuestionFromFB :ArrayList<String> = ArrayList()
@@ -57,11 +55,6 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
             val intent = Intent(applicationContext,ProfileActivity::class.java)
             startActivity(intent)
         }
-        else if (item.itemId==  R.id.categorys)
-        {
-            val intent = Intent(applicationContext,Categorys::class.java)
-            startActivity(intent)
-        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -73,7 +66,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-
+        getDataFromFireStore()
 
         userId = auth.uid.toString()
 
@@ -85,36 +78,26 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         adapter = FeedRecyclerAdapter(userEmailFromFB, userQuestionFromFB , userImageFromFB,this,postIdFromFB)
         recyclerView.adapter = adapter
 
-        var intent = intent
-        catagory =  intent.getStringExtra("catagory").toString()
 
 
-        getDataFromFireStore()
     }
 
     fun logoutfun(){
         auth.signOut()
-
-        println(auth)
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
        // finish()
-        finishAffinity()
+        //finishAffinity()
     }
-
 
     fun getDataFromFireStore()
     {
        // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
-        //println(userId)
+        println(userId)
 
-
-
-    if(catagory=="null")
-    {
-        db.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //tüm sorular için
-            //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+         db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
+     //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
@@ -122,94 +105,44 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
             else
             {
-                if(snapshot != null&&!snapshot.isEmpty)
-                {
+               if(snapshot != null&&!snapshot.isEmpty)
+               {
 
-                    //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
-                    userEmailFromFB.clear()
-                    userQuestionFromFB.clear()
-                    userImageFromFB.clear()
-                    postIdFromFB.clear()
-                    val documents= snapshot.documents
-                    for (document in documents)
-                    {
+                   //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
+                   userEmailFromFB.clear()
+                   userQuestionFromFB.clear()
+                   userImageFromFB.clear()
+                   postIdFromFB.clear()
+                       val documents= snapshot.documents
+                       for (document in documents)
+                       {
 
 
-                        val question = document.get("Questions") as String
-                        val timestamp = document.get("date") as com.google.firebase.Timestamp
-                        val date = timestamp.toDate()
-                        val postId = document.id as String
-                        val userEmail = document.get("userEmail") as String
-                        val downloadUrl = document.get("downloadUrl") as String
+                           val question = document.get("Questions") as String
+                           val timestamp = document.get("date") as com.google.firebase.Timestamp
+                           val date = timestamp.toDate()
+                           val postId = document.id as String
+                           val userEmail = document.get("userEmail") as String
+                           val downloadUrl = document.get("downloadUrl") as String
 
-                        /*println(userEmail)
-                        println(question)
-                        println(date)
-                        println(downloadUrl)*/
+                           /*println(userEmail)
+                           println(question)
+                           println(date)
+                           println(downloadUrl)*/
 
-                        userEmailFromFB.add(userEmail)
-                        userQuestionFromFB.add(question)
-                        userImageFromFB.add(downloadUrl)
-                        postIdFromFB.add(postId)
-                        adapter!!.notifyDataSetChanged()
-                    }
-                }
+                           userEmailFromFB.add(userEmail)
+                           userQuestionFromFB.add(question)
+                           userImageFromFB.add(downloadUrl)
+                           postIdFromFB.add(postId)
+                           adapter!!.notifyDataSetChanged()
+                       }
+
+
+               }
+
+
             }
         }
-    }
-        else
-    {
-
-        db.collection("Catagorys").document("subCatagorys").collection(catagory).orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //tüm sorular için
-            //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
-            if(exception !=null)
-            {
-                Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
-            }
-
-            else
-            {
-                if(snapshot != null&&!snapshot.isEmpty)
-                {
-
-                    //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
-                    userEmailFromFB.clear()
-                    userQuestionFromFB.clear()
-                    userImageFromFB.clear()
-                    postIdFromFB.clear()
-                    val documents= snapshot.documents
-                    for (document in documents)
-                    {
-
-
-                        val question = document.get("Questions") as String
-                        val timestamp = document.get("date") as com.google.firebase.Timestamp
-                        val date = timestamp.toDate()
-                        val postId = document.id as String
-                        val userEmail = document.get("userEmail") as String
-                        val downloadUrl = document.get("downloadUrl") as String
-
-                        /*println(userEmail)
-                        println(question)
-                        println(date)
-                        println(downloadUrl)*/
-
-                        userEmailFromFB.add(userEmail)
-                        userQuestionFromFB.add(question)
-                        userImageFromFB.add(downloadUrl)
-                        postIdFromFB.add(postId)
-                        adapter!!.notifyDataSetChanged()
-                    }
-                }
-            }
-        }
-
-    }
-
-
-
-
-
     }
  /*   fun addAnswer(view : View)
     {

@@ -25,7 +25,7 @@ class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private
 
     override fun getItemCount(): Int {
 
-       return userEmailArray.size
+        return userEmailArray.size
 
     }
 
@@ -72,7 +72,6 @@ class FeedRecyclerAdapter (private val userEmailArray: ArrayList<String>,private
 
 
 }
-
 interface OnCarItemClickListner{
     fun onItemClick(position: Int,postId: String, Email:String,Question: String,Image: String)
 }
