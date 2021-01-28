@@ -141,7 +141,7 @@
         android:layout_width="102dp"
         android:layout_height="100dp"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:onClick="gardening"
         android:text="Gardening"
         app:layout_constraintStart_toStartOf="parent"
