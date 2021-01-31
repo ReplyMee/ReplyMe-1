@@ -16,8 +16,9 @@ class otherUserProfil : AppCompatActivity() {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-    private lateinit var postUserId: String
+    var postUserId =""
     private lateinit var postId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_other_user_profil)
@@ -39,7 +40,7 @@ class otherUserProfil : AppCompatActivity() {
                   ).show()
               } else {
                   postUserId = snapshot?.get("postUserId") as String
-
+                println(postUserId)
 
 
                   db.collection("Users").document(postUserId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
@@ -100,6 +101,15 @@ class otherUserProfil : AppCompatActivity() {
     {
         val intent = Intent(applicationContext,otherAnswer()::class.java)
         intent.putExtra("postId",postId)
+        startActivity(intent)
+    }
+
+
+    fun openOtherContact(view: View)
+    {
+        val intent = Intent(applicationContext,contactActivity()::class.java)
+        //println(postUserId)
+        intent.putExtra("userId",postUserId)
         startActivity(intent)
     }
 }

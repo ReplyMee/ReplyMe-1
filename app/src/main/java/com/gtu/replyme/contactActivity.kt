@@ -44,9 +44,9 @@ class contactActivity : AppCompatActivity() {
 
         auth  = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        userId = auth.uid.toString()
+        //userId = auth.uid.toString()
 
-
+        userId =  intent.getStringExtra("userId")
 
 
 

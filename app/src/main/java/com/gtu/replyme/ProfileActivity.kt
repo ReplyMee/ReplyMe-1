@@ -29,10 +29,10 @@ class ProfileActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
 
 
-        userId = auth.uid.toString()
+       // userId = auth.uid.toString()
         val db = FirebaseFirestore.getInstance()
 
-
+        userId =  intent.getStringExtra("userId")
 
       //  db.collection("Users").document(userId).collection("UserData").addSnapshotListener
 
@@ -180,7 +180,9 @@ class ProfileActivity : AppCompatActivity() {
      //   finish()
     }
    fun yourConnect(view: View) {
+       //userId
        val intent = Intent(applicationContext,contactActivity::class.java)
+       intent.putExtra("userId",userId)
        startActivity(intent)
        //   finish()
    }

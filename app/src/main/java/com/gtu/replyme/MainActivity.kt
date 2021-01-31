@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
-
+            intent.putExtra("catagory","null")
             startActivity(intent)
-        },1000)
+        },500)
 
         Handler().postDelayed({
 

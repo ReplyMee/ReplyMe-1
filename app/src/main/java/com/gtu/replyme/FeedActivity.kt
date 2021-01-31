@@ -55,6 +55,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         else if (item.itemId==  R.id.profile)
         {
             val intent = Intent(applicationContext,ProfileActivity::class.java)
+            intent.putExtra("userId",userId)
             startActivity(intent)
         }
         else if (item.itemId==  R.id.categorys)

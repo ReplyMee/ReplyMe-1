@@ -60,6 +60,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/contact"
+        android:onClick="openOtherContact"
         app:layout_constraintEnd_toEndOf="@+id/otherQuestion"
         app:layout_constraintStart_toStartOf="@+id/otherQuestion"
         app:layout_constraintTop_toBottomOf="@+id/otherQuestion" />
