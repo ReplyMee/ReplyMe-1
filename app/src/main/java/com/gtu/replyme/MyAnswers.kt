@@ -15,11 +15,11 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 
-class Myquestions : AppCompatActivity() , OnCarItemClickListner {
+class MyAnswers : AppCompatActivity() , OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-
+    private lateinit var postId: String
 
     private lateinit var userId : String
     var tttest = "0"
@@ -63,14 +63,16 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_myquestions)
+        setContentView(R.layout.activity_my_answers)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        //postId =  intent.getStringExtra("postId")
+
         getDataFromFireStore()
 
-        userId = auth.uid.toString()
+
 
         //recyclerview ayarları
         var layoutManager = LinearLayoutManager(this)
@@ -90,60 +92,61 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
         //finishAffinity()
     }
 
-    fun getDataFromFireStore()
-    {
+    fun getDataFromFireStore() {
         // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
         println(userId)
 
-       // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
-               db.collection("Users").document(userId).collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //kendi soruları için
-            if(exception !=null)
-            {
-                Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
-            }
-
-            else
-            {
-                if(snapshot != null&&!snapshot.isEmpty)
-                {
-
-                    //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
-                    userEmailFromFB.clear()
-                    userQuestionFromFB.clear()
-                    userImageFromFB.clear()
-                    postIdFromFB.clear()
-                    val documents= snapshot.documents
-                    for (document in documents)
-                    {
 
 
-                        val question = document.get("Questions") as String
-                        val timestamp = document.get("date") as com.google.firebase.Timestamp
-                        val date = timestamp.toDate()
-                        val postId = document.id as String
-                        val userEmail = document.get("userEmail") as String
-                        val downloadUrl = document.get("downloadUrl") as String
+            db.collection("Users").document(userId).collection("userAnswers")
+                        .orderBy("date", Query.Direction.DESCENDING)
+                        .addSnapshotListener { snapshot, exception -> //kendi soruları için
+                            if (exception != null) {
+                                Toast.makeText(
+                                    applicationContext,
+                                    exception.localizedMessage.toString(),
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else {
+                                if (snapshot != null && !snapshot.isEmpty) {
+                                    //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
+                                    userEmailFromFB.clear()
+                                    userQuestionFromFB.clear()
+                                    userImageFromFB.clear()
+                                    postIdFromFB.clear()
+                                    val documents = snapshot.documents
+                                    for (document in documents) {
+                                        val question = document.get("Questions") as String
+                                        val timestamp =
+                                            document.get("date") as com.google.firebase.Timestamp
+                                        val date = timestamp.toDate()
+                                        val postId = document.id as String
+                                        val userEmail = document.get("userEmail") as String
+                                        val downloadUrl = document.get("downloadUrl") as String
 
-                        /*println(userEmail)
-                        println(question)
-                        println(date)
-                        println(downloadUrl)*/
-
-                        userEmailFromFB.add(userEmail)
-                        userQuestionFromFB.add(question)
-                        userImageFromFB.add(downloadUrl)
-                        postIdFromFB.add(postId)
-                        adapter!!.notifyDataSetChanged()
-                    }
+                                        /*println(userEmail)
+                                println(question)
+                                println(date)
+                                println(downloadUrl)*/
+                                        userEmailFromFB.add(userEmail)
+                                        userQuestionFromFB.add(question)
+                                        userImageFromFB.add(downloadUrl)
+                                        postIdFromFB.add(postId)
+                                        adapter!!.notifyDataSetChanged()
+                                    }
+                                }
+                            }
+                        }
 
 
                 }
 
 
-            }
-        }
-    }
+                // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
+
+
+
     /*   fun addAnswer(view : View)
        {
 

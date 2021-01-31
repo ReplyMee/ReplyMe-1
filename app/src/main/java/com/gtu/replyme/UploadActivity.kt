@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_upload.*
 import java.lang.Exception
 import java.lang.reflect.Field
@@ -186,25 +188,81 @@ class UploadActivity : AppCompatActivity() {
                         //val postMap2 = hashMapOf<String,Any>()
 
 
-                        postMap.put("catagory",selectedCatgo)
-                        postMap.put("downloadUrl",downloadUrl)
 
-                        postMap.put("userEmail",auth.currentUser!!.email.toString())
-                        postMap.put("Questions",questiontext.text.toString())
-                        postMap.put("date",com.google.firebase.Timestamp.now())
 
-                        db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
-                            if (task.isComplete && task.isSuccessful)
+
+
+
+
+
+
+
+                        db.collection("Users").document(userId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
+                            //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                            if(exception !=null)
                             {
-                                //  db.collection("testUser").
-                                db.collection("Users").document(userId).collection("Posts").add(postMap)
-                                db.collection("Catagorys").document("subCatagorys").collection(selectedCatgo).add(postMap)
-                                finish()
-
-
+                                Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
                             }
+                            else
+                            {
+                                if(snapshot != null&&!snapshot.isEmpty)
+                                {
+                                    val documents= snapshot.documents
+                                    for (document in documents)
+                                    {
+                                        val docId=document.id;
+                                        //    val downloadUrl = document.get("downloadUrl") as String
+                                        //db.collection("Users").document(userId).collection("UsersData").document(docId).update("ProfilPhoto","assssssssssss")
+                                        val urlPP :String  = document.get("profilPhoto") as String
+                                    //    Picasso.get().load(urlPP).into(ProfilePhoto)
+                                        val userNickName = document.get("userNickName") as String
 
-                        }.addOnFailureListener{exception ->  Toast.makeText(applicationContext, exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()}
+
+
+
+
+                                        postMap.put("profilPhoto",urlPP)
+                                       // postMap.put("userNickName",userNickName)
+
+                                        postMap.put("catagory",selectedCatgo)
+                                        postMap.put("downloadUrl",downloadUrl)
+                                        postMap.put("postUserId",userId)
+                                      //  postMap.put("userEmail",auth.currentUser!!.email.toString())
+                                        postMap.put("userEmail",userNickName)
+                                        postMap.put("Questions",questiontext.text.toString())
+                                        postMap.put("date",com.google.firebase.Timestamp.now())
+
+                                        db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
+                                            if (task.isComplete && task.isSuccessful)
+                                            {
+
+                                                //  db.collection("testUser").
+                                                db.collection("Users").document(userId).collection("Posts").add(postMap)
+                                                db.collection("Catagorys").document("subCatagorys").collection(selectedCatgo).add(postMap)
+                                                finish()
+                                            }
+                                        }.addOnFailureListener{exception ->  Toast.makeText(applicationContext, exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()}
+
+
+
+
+
+
+
+
+                                    }
+                                }
+                                else
+                                {
+                                    println("elseeeee")
+                                }
+                            }
+                        }
+
+
+
+
+
 
                         //  db.collection("testUser").
 
@@ -224,24 +282,79 @@ class UploadActivity : AppCompatActivity() {
 
                 val postMap = hashMapOf<String,Any>()
 
-                postMap.put("downloadUrl","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c")
-                postMap.put("userEmail",auth.currentUser!!.email.toString())
-                postMap.put("Questions",questiontext.text.toString())
-                postMap.put("date",com.google.firebase.Timestamp.now())
+                //val postMap2 = hashMapOf<String,Any>()
 
-                db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
-                    if (task.isComplete && task.isSuccessful)
+
+
+
+
+
+
+
+
+
+
+                db.collection("Users").document(userId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
+                    //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                    if(exception !=null)
                     {
-                        db.collection("Users").document(userId).collection("Posts").add(postMap)
-                        db.collection("Catagorys").document("subCatagorys").collection(selectedCatgo).add(postMap)
-
-                        finish()
-
+                        Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
                     }
+                    else
+                    {
+                        if(snapshot != null&&!snapshot.isEmpty)
+                        {
+                            val documents= snapshot.documents
+                            for (document in documents)
+                            {
+                                val docId=document.id;
+                                //    val downloadUrl = document.get("downloadUrl") as String
+                                //db.collection("Users").document(userId).collection("UsersData").document(docId).update("ProfilPhoto","assssssssssss")
+                                   val urlPP :String  = document.get("profilPhoto") as String
+                                //    Picasso.get().load(urlPP).into(ProfilePhoto)
+                                val userNickName = document.get("userNickName") as String
 
-                }.addOnFailureListener{exception ->  Toast.makeText(applicationContext, exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()}
-                //  val exampleMap = hashMapOf<String,Ant>("downloadUrl"to downloadUrl)
-                //db.collection("Posts").add
+
+
+
+
+                                     postMap.put("profilPhoto",urlPP)
+                                // postMap.put("userNickName",userNickName)
+
+                                postMap.put("catagory",selectedCatgo)
+                                postMap.put("downloadUrl","https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c")
+                                postMap.put("postUserId",userId)
+                                //  postMap.put("userEmail",auth.currentUser!!.email.toString())
+                                postMap.put("userEmail",userNickName)
+                                postMap.put("Questions",questiontext.text.toString())
+                                postMap.put("date",com.google.firebase.Timestamp.now())
+
+                                db.collection("Posts").add(postMap).addOnCompleteListener{task: Task<DocumentReference> ->
+                                    if (task.isComplete && task.isSuccessful)
+                                    {
+
+                                        //  db.collection("testUser").
+                                        db.collection("Users").document(userId).collection("Posts").add(postMap)
+                                        db.collection("Catagorys").document("subCatagorys").collection(selectedCatgo).add(postMap)
+                                        finish()
+                                    }
+                                }.addOnFailureListener{exception ->  Toast.makeText(applicationContext, exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()}
+
+
+
+
+
+
+
+
+                            }
+                        }
+                        else
+                        {
+                            println("elseeeee")
+                        }
+                    }
+                }
 
 
 

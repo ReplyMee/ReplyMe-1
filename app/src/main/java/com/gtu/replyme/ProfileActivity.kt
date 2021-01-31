@@ -49,34 +49,26 @@ class ProfileActivity : AppCompatActivity() {
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
             }
-
             else
             {
                 if(snapshot != null&&!snapshot.isEmpty)
                 {
-
                     val documents= snapshot.documents
                     for (document in documents)
                     {
                       val docId=document.id;
-
                         //    val downloadUrl = document.get("downloadUrl") as String
                         //db.collection("Users").document(userId).collection("UsersData").document(docId).update("ProfilPhoto","assssssssssss")
                         val urlPP :String  = document.get("profilPhoto") as String
-
                         Picasso.get().load(urlPP).into(ProfilePhoto)
                         val userNickName = document.get("userNickName") as String
                         UserName.text=userNickName
                     }
-
-
                 }
                 else
                 {
                     println("elseeeee")
                 }
-
-
             }
         }
 
@@ -127,7 +119,7 @@ class ProfileActivity : AppCompatActivity() {
 
        // db.collection("Users").document(userId).collection("ProfilPhoto").document()
 
-
+/*
         db.collection("Users").document(userId).collection("UserData").addSnapshotListener { snapshot, exception ->
 
             if(exception !=null)
@@ -154,7 +146,7 @@ class ProfileActivity : AppCompatActivity() {
                     println("anaaaaaaaaaaaa")
                 }
             }
-        }
+        }*/
 
 
 
@@ -175,8 +167,8 @@ class ProfileActivity : AppCompatActivity() {
        // finish()
     }
     fun yourAnswers(view: View) {
-       /* val intent = Intent(applicationContext,AnswersActivity::class.java)
-        startActivity(intent)*/
+        val intent = Intent(applicationContext,MyAnswers::class.java)
+        startActivity(intent)
        // finish()
     }
     fun settings(view: View) {
@@ -184,6 +176,11 @@ class ProfileActivity : AppCompatActivity() {
         startActivity(intent)
      //   finish()
     }
+   fun yourConnect(view: View) {
+       val intent = Intent(applicationContext,contactActivity::class.java)
+       startActivity(intent)
+       //   finish()
+   }
 }
 //db.collection("Users").document(userId).collection("UsersData").add(postMap)
 

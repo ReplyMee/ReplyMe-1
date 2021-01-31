@@ -11,7 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".otherUserProfil"></activity>
+        <activity android:name=".contactSettingActivity"></activity>
+        <activity android:name=".contactActivity" />
+        <activity android:name=".answerClickedbyAskingPerson" />
+        <activity android:name=".answerClicked" />
+        <activity android:name=".otherAnswer" />
+        <activity android:name=".otherQuestions" />
+        <activity android:name=".openUser" />
+        <activity android:name=".MyAnswers" />
+        <activity android:name=".otherUserProfil" />
         <activity android:name=".Categorys" />
         <activity android:name=".showAnswer" />
         <activity android:name=".postClicked" />

@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_answers.*
 import kotlinx.android.synthetic.main.activity_upload.*
@@ -130,30 +131,51 @@ class AnswersActivity : AppCompatActivity() {
                     //val postMap2 = hashMapOf<String,Any>()
 
 
-                    postMap.put("downloadUrl", downloadUrl)
+                    db.collection("Posts").document(postId).addSnapshotListener(){ snapshot, exception -> //tüm sorular için
+                        //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                        if(exception !=null)
+                        {
+                            Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+                        }
 
-                    postMap.put("userEmail", auth.currentUser!!.email.toString())
-                    postMap.put("Questions", answertext.text.toString())
-                    postMap.put("date", com.google.firebase.Timestamp.now())
+                        else
+                        {
+                            val postUserId= snapshot?.get("postUserId") as String
 
-                    db.collection("Posts").document(postId).collection("Answer").add(postMap)
-                        .addOnCompleteListener { task: Task<DocumentReference> ->
-                            if (task.isComplete && task.isSuccessful) {
-                                //  db.collection("testUser").
-                                db.collection("Users").document(userId).collection("Posts")
-                                    .add(postMap)
 
-                                finish()
+                            postMap.put("downloadUrl", downloadUrl)
+                            postMap.put("userEmail", auth.currentUser!!.email.toString())
+                            postMap.put("Questions", answertext.text.toString())
+                            postMap.put("date", com.google.firebase.Timestamp.now())
+                            postMap.put("lock","locked")
+                            postMap.put("postId",postId)
+                            postMap.put("postUserId",postUserId)
 
-                            }
+                            val postMap2 = hashMapOf<String, Any>()
+                            postMap2.put("postId",postId)
+                            db.collection("Posts").document(postId).collection("Answer").add(postMap)
+                                .addOnCompleteListener { task: Task<DocumentReference> ->
+                                    if (task.isComplete && task.isSuccessful) {
+                                        //  db.collection("testUser").
+                                     /*   db.collection("Users").document(userId).collection("userAnswers")
+                                            .add(postMap)*/
+                                        db.collection("Users").document(userId).collection("userAnswers")
+                                            .add(postMap2)
+                                        finish()
 
-                        }.addOnFailureListener { exception ->
-                        Toast.makeText(
-                            applicationContext,
-                            exception.localizedMessage.toString(),
-                            Toast.LENGTH_LONG
-                        ).show()
+                                    }
+
+                                }.addOnFailureListener { exception ->
+                                    Toast.makeText(
+                                        applicationContext,
+                                        exception.localizedMessage.toString(),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                        }
                     }
+
+
                     //  val exampleMap = hashMapOf<String,Ant>("downloadUrl"to downloadUrl)
                     //db.collection("Posts").add
 
@@ -163,33 +185,59 @@ class AnswersActivity : AppCompatActivity() {
         if (selectedPicture == null) {
 
 
-            val postMap = hashMapOf<String, Any>()
 
-            postMap.put(
-                "downloadUrl",
-                "https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c"
-            )
-            postMap.put("userEmail", auth.currentUser!!.email.toString())
-            postMap.put("Questions", answertext.text.toString())
-            postMap.put("date", com.google.firebase.Timestamp.now())
+                    val postMap = hashMapOf<String, Any>()
 
-            db.collection("Posts").document(postId).collection("Answer").add(postMap)
-                .addOnCompleteListener { task: Task<DocumentReference> ->
-                    if (task.isComplete && task.isSuccessful) {
-                        db.collection("Users").document(userId).collection("Posts").add(postMap)
-                        finish()
+                    //val postMap2 = hashMapOf<String,Any>()
 
+
+                    db.collection("Posts").document(postId).addSnapshotListener(){ snapshot, exception -> //tüm sorular için
+                        //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                        if(exception !=null)
+                        {
+                            Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+                        }
+
+                        else
+                        {
+                            val postUserId= snapshot?.get("postUserId") as String
+                            postMap.put("downloadUrl", "https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c")
+
+                            postMap.put("userEmail", auth.currentUser!!.email.toString())
+                            postMap.put("Questions", answertext.text.toString())
+                            postMap.put("date", com.google.firebase.Timestamp.now())
+
+                            postMap.put("lock","locked")
+                            postMap.put("postId",postId)
+                            postMap.put("postUserId",postUserId)
+                            db.collection("Posts").document(postId).collection("Answer").add(postMap)
+                                .addOnCompleteListener { task: Task<DocumentReference> ->
+                                    if (task.isComplete && task.isSuccessful) {
+                                        //  db.collection("testUser").
+                                        db.collection("Users").document(userId).collection("userAnswers")
+                                            .add(postMap)
+
+                                        finish()
+
+                                    }
+
+                                }.addOnFailureListener { exception ->
+                                    Toast.makeText(
+                                        applicationContext,
+                                        exception.localizedMessage.toString(),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                        }
                     }
 
-                }.addOnFailureListener { exception ->
-                Toast.makeText(
-                    applicationContext,
-                    exception.localizedMessage.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-            //  val exampleMap = hashMapOf<String,Ant>("downloadUrl"to downloadUrl)
-            //db.collection("Posts").add
+
+                    //  val exampleMap = hashMapOf<String,Ant>("downloadUrl"to downloadUrl)
+                    //db.collection("Posts").add
+
+
+
+
 
 
         }

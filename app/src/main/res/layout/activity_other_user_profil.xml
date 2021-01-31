@@ -7,28 +7,28 @@
     tools:context=".ProfileActivity">
 
     <ImageView
-        android:id="@+id/ProfilePhoto"
+        android:id="@+id/ProfilePhotoOther"
         android:layout_width="112dp"
         android:layout_height="78dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/UserName"
+        app:layout_constraintEnd_toStartOf="@+id/UserNameOther"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_profile" />
 
 
     <TextView
-        android:id="@+id/UserName"
+        android:id="@+id/UserNameOther"
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
         android:text="TextView"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/ProfilePhoto"
-        app:layout_constraintTop_toTopOf="@+id/ProfilePhoto" />
+        app:layout_constraintStart_toEndOf="@+id/ProfilePhotoOther"
+        app:layout_constraintTop_toTopOf="@+id/ProfilePhotoOther" />
 
     <Button
         android:id="@+id/otherQuestion"
@@ -41,7 +41,7 @@
         android:onClick="otherQuestions"
         app:layout_constraintEnd_toStartOf="@+id/otherAnswer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ProfilePhoto" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePhotoOther" />
 
     <Button
         android:id="@+id/otherAnswer"

@@ -66,6 +66,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:background="@drawable/contact"
+        android:onClick="yourConnect"
         app:layout_constraintBottom_toBottomOf="@+id/feedback"
         app:layout_constraintEnd_toEndOf="@+id/yourAnswer"
         app:layout_constraintStart_toStartOf="@+id/yourAnswer"

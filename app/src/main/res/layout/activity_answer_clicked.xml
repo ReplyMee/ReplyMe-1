@@ -26,9 +26,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/emailAnswerClicked"
         android:layout_width="253dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:onClick="openUser"
         android:text="email"
@@ -37,40 +37,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/questionanswerclicked"
+        android:id="@+id/questionanswerclickedd"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="soru"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginEnd="11dp"
-        android:background="@drawable/main_button"
-        android:onClick="reply"
-        android:text="Add Answer"
-        app:layout_constraintBottom_toBottomOf="@+id/button5"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="90dp"
-        android:layout_marginBottom="150dp"
-        android:background="@drawable/main_button"
-        android:onClick="showAnswer"
-        android:text="See Answer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"

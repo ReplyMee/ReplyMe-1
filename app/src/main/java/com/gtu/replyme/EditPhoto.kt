@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.activity_edit_photo.*
 import kotlinx.android.synthetic.main.activity_upload.*
 import java.lang.Exception
 import java.util.*
@@ -37,7 +38,7 @@ class EditPhoto : AppCompatActivity() {
         userId = auth.uid.toString()
     }
 
-    fun questionview(View: View)
+    fun editPhoto(View: View)
     {
 
         if(ContextCompat.checkSelfPermission(this , Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
@@ -82,12 +83,12 @@ class EditPhoto : AppCompatActivity() {
                     {
                         val source = ImageDecoder.createSource(contentResolver,selectedPicture!!)
                         val bitmap = ImageDecoder.decodeBitmap(source)
-                        imageView5.setImageBitmap(bitmap)
+                        profilePhotoNew.setImageBitmap(bitmap)
                     }
                     else
                     {
                         val  bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver,selectedPicture)
-                        imageView5.setImageBitmap(bitmap)
+                        profilePhotoNew.setImageBitmap(bitmap)
                     }
 
                 }

@@ -1,6 +1,7 @@
 package com.gtu.replyme
 
 import android.content.Intent
+import android.net.http.SslCertificate
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -16,9 +17,12 @@ import kotlinx.android.synthetic.main.recycler_view_row.*
 
 class showAnswer : AppCompatActivity() , OnCarItemClickListner {
     var postId = ""
+    var questionId= ""
+    var postUserId=""
+    var question=""
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-
+    var lock =""
     private lateinit var userId : String
     var tttest = "0"
     var userEmailFromFB :ArrayList<String> = ArrayList()
@@ -86,7 +90,7 @@ class showAnswer : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun logoutfun(){
-        auth.signOut()
+       // auth.signOut()
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
         // finish()
@@ -121,12 +125,12 @@ class showAnswer : AppCompatActivity() , OnCarItemClickListner {
                     val documents= snapshot.documents
                     for (document in documents)
                     {
-
-
-                        val question = document.get("Questions") as String
+                        postUserId=document.get("postUserId") as String
+                        lock=document.get("lock") as String
+                        question = document.get("Questions") as String
                         val timestamp = document.get("date") as com.google.firebase.Timestamp
                         val date = timestamp.toDate()
-                        val postId = document.id as String
+                        val questionId = document.id as String
                         val userEmail = document.get("userEmail") as String
                         val downloadUrl = document.get("downloadUrl") as String
 
@@ -134,12 +138,15 @@ class showAnswer : AppCompatActivity() , OnCarItemClickListner {
                         println(question)
                         println(date)
                         println(downloadUrl)*/
+                        if(lock=="unlocked"||(postUserId==userId))
+                        {
+                            userEmailFromFB.add(userEmail)
+                            userQuestionFromFB.add(question)
+                            userImageFromFB.add(downloadUrl)
+                            postIdFromFB.add(questionId)
+                            adapter!!.notifyDataSetChanged()
+                        }
 
-                        userEmailFromFB.add(userEmail)
-                        userQuestionFromFB.add(question)
-                        userImageFromFB.add(downloadUrl)
-                        postIdFromFB.add(postId)
-                        adapter!!.notifyDataSetChanged()
                     }
 
 
@@ -167,12 +174,37 @@ class showAnswer : AppCompatActivity() , OnCarItemClickListner {
     override fun onItemClick(position: Int,uidImage : String,Email : String, Question :String, Image:String) {
         //    Toast.makeText(this, questions.toString(), Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(applicationContext,postClicked::class.java)
-        intent.putExtra("postId",uidImage)
-        intent.putExtra("Email",Email)
-        intent.putExtra("Question",Question)
-        intent.putExtra("Image",Image)
-        startActivity(intent)
+        if(lock=="unlocked")
+            {
+                val intent = Intent(applicationContext,answerClicked::class.java)
+                intent.putExtra("questionId",uidImage)
+                intent.putExtra("Email",Email)
+                intent.putExtra("postId",postId)
+                intent.putExtra("Image",Image)
+                intent.putExtra("lock",lock)
+                intent.putExtra("postUserId",postUserId)
+                intent.putExtra("Question",Question)
+                startActivity(intent)
+
+                //questionId postid
+            }
+        if(lock=="locked"&&(postUserId==userId))
+        {
+            val intent = Intent(applicationContext,answerClickedbyAskingPerson::class.java)
+
+            intent.putExtra("questionId",uidImage)
+            intent.putExtra("Email",Email)
+            intent.putExtra("postId",postId)
+            intent.putExtra("Image",Image)
+            intent.putExtra("lock",lock)
+            intent.putExtra("postUserId",postUserId)
+            intent.putExtra("Question",Question)
+            startActivity(intent)
+
+            startActivity(intent)
+        }
+
+
 
         /*  val intent = Intent(this, CarDetailsActivity::class.java)
           intent.putExtra("CARNAME", item.name)

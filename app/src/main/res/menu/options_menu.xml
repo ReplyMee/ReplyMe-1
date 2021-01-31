@@ -4,10 +4,11 @@
     <item android:title="Profile"
         android:id="@+id/profile"/>
     <item
-        android:id="@+id/logout"
-        android:title="Log Out "></item>
-    <item
         android:id="@+id/categorys"
         android:title="Categorys "></item>
+    <item
+        android:id="@+id/logout"
+        android:title="Log Out "></item>
+
 
 </menu>

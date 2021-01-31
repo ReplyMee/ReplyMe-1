@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 
@@ -18,7 +19,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-
+    var catagory:String =""
     private lateinit var userId : String
     var tttest = "0"
     var userEmailFromFB :ArrayList<String> = ArrayList()
@@ -55,6 +56,11 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
             val intent = Intent(applicationContext,ProfileActivity::class.java)
             startActivity(intent)
         }
+        else if (item.itemId==  R.id.categorys)
+        {
+            val intent = Intent(applicationContext,Categorys::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -66,6 +72,8 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        catagory =  intent.getStringExtra("catagory")
+        println(catagory)
         getDataFromFireStore()
 
         userId = auth.uid.toString()
@@ -83,7 +91,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun logoutfun(){
-        auth.signOut()
+        //auth.signOut()
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
        // finish()
@@ -96,53 +104,101 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         userId = auth.uid.toString()
         println(userId)
 
-         db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
-     //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
-            if(exception !=null)
-            {
-                Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
-            }
+        if (catagory=="null")
+        {
+            db.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //tüm sorular için
+                //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                if(exception !=null)
+                {
+                    Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+                }
 
-            else
-            {
-               if(snapshot != null&&!snapshot.isEmpty)
-               {
+                else
+                {
+                    if(snapshot != null&&!snapshot.isEmpty)
+                    {
 
-                   //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
-                   userEmailFromFB.clear()
-                   userQuestionFromFB.clear()
-                   userImageFromFB.clear()
-                   postIdFromFB.clear()
-                       val documents= snapshot.documents
-                       for (document in documents)
-                       {
-
-
-                           val question = document.get("Questions") as String
-                           val timestamp = document.get("date") as com.google.firebase.Timestamp
-                           val date = timestamp.toDate()
-                           val postId = document.id as String
-                           val userEmail = document.get("userEmail") as String
-                           val downloadUrl = document.get("downloadUrl") as String
-
-                           /*println(userEmail)
-                           println(question)
-                           println(date)
-                           println(downloadUrl)*/
-
-                           userEmailFromFB.add(userEmail)
-                           userQuestionFromFB.add(question)
-                           userImageFromFB.add(downloadUrl)
-                           postIdFromFB.add(postId)
-                           adapter!!.notifyDataSetChanged()
-                       }
+                        //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
+                        userEmailFromFB.clear()
+                        userQuestionFromFB.clear()
+                        userImageFromFB.clear()
+                        postIdFromFB.clear()
+                        val documents= snapshot.documents
+                        for (document in documents)
+                        {
 
 
-               }
+                            val question = document.get("Questions") as String
+                            val timestamp = document.get("date") as com.google.firebase.Timestamp
+                            val date = timestamp.toDate()
+                            val postId = document.id as String
+                            val userEmail = document.get("userEmail") as String
+                            val downloadUrl = document.get("downloadUrl") as String
 
 
+                            /*println(userEmail)
+                            println(question)
+                            println(date)
+                            println(downloadUrl)*/
+
+                            userEmailFromFB.add(userEmail)
+                            userQuestionFromFB.add(question)
+                            userImageFromFB.add(downloadUrl)
+                            postIdFromFB.add(postId)
+                            adapter!!.notifyDataSetChanged()
+                        }
+                    }
+                }
             }
         }
+
+        else
+        {
+            db.collection("Catagorys").document("subCatagorys").collection(catagory).addSnapshotListener { snapshot, exception -> //tüm sorular için
+                //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                if(exception !=null)
+                {
+                    Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+                }
+
+                else
+                {
+                    if(snapshot != null&&!snapshot.isEmpty)
+                    {
+
+                        //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
+                        userEmailFromFB.clear()
+                        userQuestionFromFB.clear()
+                        userImageFromFB.clear()
+                        postIdFromFB.clear()
+                        val documents= snapshot.documents
+                        for (document in documents)
+                        {
+
+
+                            val question = document.get("Questions") as String
+                            val timestamp = document.get("date") as com.google.firebase.Timestamp
+                            val date = timestamp.toDate()
+                            val postId = document.id as String
+                            val userEmail = document.get("userEmail") as String
+                            val downloadUrl = document.get("downloadUrl") as String
+
+                            /*println(userEmail)
+                            println(question)
+                            println(date)
+                            println(downloadUrl)*/
+
+                            userEmailFromFB.add(userEmail)
+                            userQuestionFromFB.add(question)
+                            userImageFromFB.add(downloadUrl)
+                            postIdFromFB.add(postId)
+                            adapter!!.notifyDataSetChanged()
+                        }
+                    }
+                }
+            }
+        }
+
     }
  /*   fun addAnswer(view : View)
     {

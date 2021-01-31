@@ -27,6 +27,8 @@ class SettingsActivity : AppCompatActivity() {
     }
     fun editUserContact(view: View) {
 
+        val intent = Intent(applicationContext,contactSettingActivity::class.java)
+        startActivity(intent)
     }
     fun logOut(view: View) {
 
