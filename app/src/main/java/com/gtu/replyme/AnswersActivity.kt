@@ -46,7 +46,7 @@ class AnswersActivity : AppCompatActivity() {
 
     }
 
-    fun fotose(View: View) {
+    fun fotose(View: View) { //fotoğraf seçme butonuna tıklandı
 
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -107,7 +107,7 @@ class AnswersActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun answerButton(View: View) {
+    fun answerButton(View: View) {//cevapmalambutonuna tıklandı
 
         val uuid = UUID.randomUUID()
         val imageName = "$uuid.jpg"
@@ -118,7 +118,7 @@ class AnswersActivity : AppCompatActivity() {
         val reference = storage.reference
         val imagesReference = reference.child("images").child(imageName)
 
-        if (selectedPicture != null) {
+        if (selectedPicture != null) { //fotoğraf seçildiyse
             imagesReference.putFile(selectedPicture!!).addOnSuccessListener { taskSnapshot ->
                 val uploadedPictureReference =
                     FirebaseStorage.getInstance().reference.child("images").child(imageName)
@@ -130,7 +130,7 @@ class AnswersActivity : AppCompatActivity() {
 
                     //val postMap2 = hashMapOf<String,Any>()
 
-
+//postun kim tarafından atıldığını anlamak için veriyi çekiyoruz
                     db.collection("Posts").document(postId).addSnapshotListener(){ snapshot, exception -> //tüm sorular için
                         //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
                         if(exception !=null)
@@ -159,6 +159,7 @@ class AnswersActivity : AppCompatActivity() {
                                         //  db.collection("testUser").
                                      /*   db.collection("Users").document(userId).collection("userAnswers")
                                             .add(postMap)*/
+                                        //cevaba ait tüm verileri kaydediyoruz
                                         db.collection("Users").document(userId).collection("userAnswers")
                                             .add(postMap2)
                                         finish()
@@ -182,7 +183,7 @@ class AnswersActivity : AppCompatActivity() {
                 }
             }
         }
-        if (selectedPicture == null) {
+        if (selectedPicture == null) { //aynı işlemler fotoğraf seçilmeme koşulu için tekrarlanıyor
 
 
 
@@ -201,6 +202,8 @@ class AnswersActivity : AppCompatActivity() {
                         else
                         {
                             val postUserId= snapshot?.get("postUserId") as String
+
+                            //defould fotoğraf yok resmi
                             postMap.put("downloadUrl", "https://firebasestorage.googleapis.com/v0/b/replyme-35b58.appspot.com/o/images%2Frrrrrrrrrrrrrs%C4%B1.JPG?alt=media&token=69307ea6-c6cd-4c56-aebd-1a606df4954c")
 
                             postMap.put("userEmail", auth.currentUser!!.email.toString())

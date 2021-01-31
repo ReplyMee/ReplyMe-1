@@ -12,6 +12,7 @@ class Categorys : AppCompatActivity() {
     }
 
     /*
+
             val intent = Intent(applicationContext,postClicked::class.java)
         intent.putExtra("postId",uidImage)
         intent.putExtra("Email",Email)
@@ -20,6 +21,7 @@ class Categorys : AppCompatActivity() {
         catagory
         startActivity(intent)*/
 
+    //feed activitye katagori parametresi gönderiliyor
     fun music(view: View)
     {
         val intent = Intent(applicationContext, FeedActivity::class.java)

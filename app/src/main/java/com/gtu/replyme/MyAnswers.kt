@@ -92,7 +92,7 @@ class MyAnswers : AppCompatActivity() , OnCarItemClickListner {
         //finishAffinity()
     }
 
-    fun getDataFromFireStore() {
+    fun getDataFromFireStore() {//feed activitgibi sadece benim verdiğim cevapları içeren postalrı açar
         // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
         println(userId)

@@ -26,8 +26,8 @@ class otherUserProfil : AppCompatActivity() {
         auth  = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        println("-<")
-        println(postId)
+      //bir postta postu atan kişinin profili
+
 
           db.collection("Posts").document(postId).addSnapshotListener() { snapshot, exception -> //tüm sorular için
               //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için

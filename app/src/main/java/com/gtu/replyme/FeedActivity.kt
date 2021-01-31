@@ -104,7 +104,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         userId = auth.uid.toString()
         println(userId)
 
-        if (catagory=="null")
+        if (catagory=="null") // program ilk açıldğında null parametresi ile çalışır
         {
             db.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //tüm sorular için
                 //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
@@ -152,7 +152,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
             }
         }
 
-        else
+        else//seçilenkatagorideki postları açar
         {
             db.collection("Catagorys").document("subCatagorys").collection(catagory).addSnapshotListener { snapshot, exception -> //tüm sorular için
                 //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için

@@ -91,7 +91,7 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun getDataFromFireStore()
-    {
+    {//feed activity gibi sadece benim sorduğum soruları açar
         // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
         println(userId)

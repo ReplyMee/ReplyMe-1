@@ -65,7 +65,7 @@ class editNickName : AppCompatActivity() {
                                     docId=document.id;
                                     val newNickName = editTextTextPersonName2.text.toString()
                                     db.collection("Users").document(userId).collection("UsersData").document(docId).update("userNickName",newNickName)
-
+                                    //yeni nickname kaydediliyor
                                 }
 
 

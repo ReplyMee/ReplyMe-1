@@ -38,6 +38,8 @@ class EditPhoto : AppCompatActivity() {
         userId = auth.uid.toString()
     }
 
+    //feed activiyt ile aynı sadece seçilen fotoğraf userdata yerinde profil photo yerine kaydediliyor
+
     fun editPhoto(View: View)
     {
 

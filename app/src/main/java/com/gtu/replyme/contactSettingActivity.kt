@@ -73,6 +73,8 @@ class contactSettingActivity : AppCompatActivity() {
                         userEmail = document.get("userEmail") as String
 
                        // val newNickName = editTextTextPersonName2.text.toString()
+
+                        //if koşullarında eski veri ile yeni veri kıyaslanıyor farklı ise yeni veri güncelleniyor
                         if(facebook!=editTextTextPersonName1.text.toString())
                         {
                             db.collection("Users").document(userId).collection("UsersData").document(docId).update("facebook",editTextTextPersonName1.text.toString())

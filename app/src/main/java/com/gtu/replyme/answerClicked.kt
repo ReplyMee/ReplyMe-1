@@ -18,18 +18,16 @@ class answerClicked : AppCompatActivity() {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-    //private lateinit var postId: String
 
 
+//onaylanmış cevabı gösterir
 
     private lateinit var userId : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer_clicked)
-
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-
         userId = auth.uid.toString()
 
         var intent = intent
@@ -54,7 +52,7 @@ class answerClicked : AppCompatActivity() {
 
     }
 
-    fun openUser(view : View)
+    fun openUser(view : View)// postta kişinin pp sine ya dakullanıcı ismine tıklandığı zaman o kişinin profilini açar
     {
 
         val intent = Intent(applicationContext,otherUserProfil()::class.java)

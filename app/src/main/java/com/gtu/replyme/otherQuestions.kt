@@ -72,7 +72,7 @@ class otherQuestions : AppCompatActivity() , OnCarItemClickListner {
 
         getDataFromFireStore()
 
-
+/*profiline girdiğimiz kişinin cevapladığı postları açar*/
 
         //recyclerview ayarları
         var layoutManager = LinearLayoutManager(this)

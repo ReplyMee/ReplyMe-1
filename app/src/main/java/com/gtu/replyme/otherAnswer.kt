@@ -62,7 +62,7 @@ class otherAnswer : AppCompatActivity() , OnCarItemClickListner {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+/*profiline girdiğimiz kişinin cevapladığı postları açar*/
         setContentView(R.layout.activity_other_answer)
 
         auth = FirebaseAuth.getInstance()

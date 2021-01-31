@@ -26,7 +26,7 @@ class answerClickedbyAskingPerson : AppCompatActivity() {
     private lateinit var db : FirebaseFirestore
     //private lateinit var postId: String
     private lateinit var userId : String
-
+//soruyu soran kişi onaylanmamış cevabı bu aktrivityde görür
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_answer_clickedby_asking_person)
@@ -66,7 +66,7 @@ class answerClickedbyAskingPerson : AppCompatActivity() {
 
 
 
-    fun Confirm(View: View)
+    fun Confirm(View: View) //onaylama butonuyla firebase de locked olan yer unlocked' e çevirlir
     {
         db.collection("Posts").document(postId).collection("Answer").document(questionId).addSnapshotListener { snapshot, exception -> //tüm sorular için
             //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için

@@ -51,7 +51,7 @@ class contactActivity : AppCompatActivity() {
 
 
 
-        //  textView3
+        //  kullanıcıya ait verileri çekiyoruz
         db.collection("Users").document(userId).collection("UsersData").addSnapshotListener { snapshot, exception -> //tüm sorular için
             //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
