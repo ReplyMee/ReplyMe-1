@@ -32,7 +32,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/questions"
         android:onClick="yourQuestions"
@@ -52,35 +52,15 @@
         app:layout_constraintTop_toTopOf="@+id/yourQuestions" />
 
     <Button
-        android:id="@+id/feedback"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="65dp"
-        android:background="@drawable/feedback"
-        app:layout_constraintEnd_toEndOf="@+id/yourQuestions"
-        app:layout_constraintStart_toStartOf="@+id/yourQuestions"
-        app:layout_constraintTop_toBottomOf="@+id/yourQuestions" />
-
-    <Button
         android:id="@+id/yourConnect"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="65dp"
         android:background="@drawable/contact"
         android:onClick="yourConnect"
-        app:layout_constraintBottom_toBottomOf="@+id/feedback"
-        app:layout_constraintEnd_toEndOf="@+id/yourAnswer"
-        app:layout_constraintStart_toStartOf="@+id/yourAnswer"
-        app:layout_constraintTop_toTopOf="@+id/feedback" />
-
-    <Button
-        android:id="@+id/rateBtn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="65dp"
-        android:background="@drawable/rate"
-        app:layout_constraintEnd_toEndOf="@+id/feedback"
-        app:layout_constraintStart_toStartOf="@+id/feedback"
-        app:layout_constraintTop_toBottomOf="@+id/feedback" />
+        app:layout_constraintEnd_toEndOf="@+id/yourQuestions"
+        app:layout_constraintStart_toStartOf="@+id/yourQuestions"
+        app:layout_constraintTop_toBottomOf="@+id/yourQuestions" />
 
     <Button
         android:id="@+id/settings"
@@ -88,9 +68,9 @@
         android:layout_height="80dp"
         android:background="@drawable/setting"
         android:onClick="settings"
-        app:layout_constraintBottom_toBottomOf="@+id/rateBtn"
-        app:layout_constraintEnd_toEndOf="@+id/yourConnect"
-        app:layout_constraintStart_toStartOf="@+id/yourConnect"
-        app:layout_constraintTop_toTopOf="@+id/rateBtn" />
+        app:layout_constraintBottom_toBottomOf="@+id/yourConnect"
+        app:layout_constraintEnd_toEndOf="@+id/yourAnswer"
+        app:layout_constraintStart_toStartOf="@+id/yourAnswer"
+        app:layout_constraintTop_toTopOf="@+id/yourConnect" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

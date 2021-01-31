@@ -24,6 +24,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/forgot_password_button"
         android:onClick="Ok"
+        android:textColor="#FFFFFF"
         android:text="Change"
         app:layout_constraintEnd_toEndOf="@+id/profilePhotoNew"
         app:layout_constraintStart_toStartOf="@+id/profilePhotoNew"

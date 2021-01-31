@@ -13,6 +13,7 @@
         android:layout_marginTop="70dp"
         android:onClick="Ok"
         android:text="Ok"
+        android:textColor="#FFFFFF"
         android:background="@drawable/forgot_password_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

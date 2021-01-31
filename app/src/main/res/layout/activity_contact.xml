@@ -6,48 +6,93 @@
     android:layout_height="match_parent"
     tools:context=".contactActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/textView62"
-        android:layout_width="209dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="27dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView63"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:autoLink="email"
+        android:hint="Email"
+        app:layout_constraintEnd_toEndOf="@+id/textView61"
+        app:layout_constraintStart_toStartOf="@+id/textView61"
         app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView60"
-        android:layout_width="205dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView61"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="31dp"
+        android:autoLink="web"
+        android:hint="Facebook"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView61"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView62"
-        app:layout_constraintEnd_toEndOf="@+id/textView62"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:autoLink="web"
+        android:hint="Linkedin"
+        app:layout_constraintEnd_toEndOf="@+id/textView63"
+        app:layout_constraintStart_toStartOf="@+id/textView63"
+        app:layout_constraintTop_toBottomOf="@+id/textView63" />
+
+    <EditText
+        android:id="@+id/textView63"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:autoLink="web"
+        android:hint="Github"
+        app:layout_constraintEnd_toEndOf="@+id/textView60"
         app:layout_constraintStart_toStartOf="@+id/textView60"
         app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
-    <TextView
-        android:id="@+id/textView63"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="341dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView62"
-        app:layout_constraintStart_toStartOf="@+id/textView60"
-        app:layout_constraintTop_toBottomOf="@+id/textView62" />
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView60"
+        app:layout_constraintEnd_toStartOf="@+id/textView60"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView60"
+        app:srcCompat="@drawable/facebook" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView63"
+        app:layout_constraintEnd_toStartOf="@+id/textView63"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView63"
+        app:srcCompat="@drawable/github" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView61"
+        app:layout_constraintEnd_toStartOf="@+id/textView61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView61"
+        app:srcCompat="@drawable/linkedin" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView62"
+        app:layout_constraintEnd_toStartOf="@+id/textView62"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView62"
+        app:srcCompat="@drawable/mail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,57 +10,104 @@
         android:id="@+id/guncelle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/forgot_password_button"
         android:onClick="Guncelle"
-        android:text="Button"
+        android:text="Update"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName51" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="31dp"
+        android:autoLink="web"
         android:ems="10"
-        android:hint="facebook"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName31"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName31" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="303dp"
-        android:layout_marginEnd="84dp"
-        android:ems="10"
-        android:hint="github"
+        android:hint="Facebook"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName41"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="4dp"
+        android:id="@+id/editTextTextPersonName31"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:autoLink="web"
         android:ems="10"
-        android:hint="linkedin"
+        android:hint="Github"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName1"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName1"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName1" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName41"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:autoLink="web"
+        android:ems="10"
+        android:hint="Linkedin"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName31"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName31"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName31" />
 
     <EditText
         android:id="@+id/editTextTextPersonName51"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:autoLink="email"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName41"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName41"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName41" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName1"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName1"
+        app:srcCompat="@drawable/facebook" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName31"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName31"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName31"
+        app:srcCompat="@drawable/github" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName41"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName41"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName41"
+        app:srcCompat="@drawable/linkedin" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName51"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName51"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName51"
+        app:srcCompat="@drawable/mail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

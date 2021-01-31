@@ -48,4 +48,6 @@ class postClicked : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun Confirm(view: View) {}
+
 }
