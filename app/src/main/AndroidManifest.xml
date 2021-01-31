@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".contactSettingActivity"></activity>
+        <activity android:name=".showMyOrOtherQuestions"></activity>
+        <activity android:name=".contactSettingActivity" />
         <activity android:name=".contactActivity" />
         <activity android:name=".answerClickedbyAskingPerson" />
         <activity android:name=".answerClicked" />

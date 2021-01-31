@@ -213,12 +213,14 @@ class AnswersActivity : AppCompatActivity() {
                             postMap.put("lock","locked")
                             postMap.put("postId",postId)
                             postMap.put("postUserId",postUserId)
+                            val postMap2 = hashMapOf<String, Any>()
+                            postMap2.put("postId",postId)
                             db.collection("Posts").document(postId).collection("Answer").add(postMap)
                                 .addOnCompleteListener { task: Task<DocumentReference> ->
                                     if (task.isComplete && task.isSuccessful) {
                                         //  db.collection("testUser").
                                         db.collection("Users").document(userId).collection("userAnswers")
-                                            .add(postMap)
+                                            .add(postMap2)
 
                                         finish()
 

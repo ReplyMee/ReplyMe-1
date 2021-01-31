@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
+import kotlin.system.exitProcess
 
 class MyAnswers : AppCompatActivity() , OnCarItemClickListner {
 
@@ -70,7 +71,7 @@ class MyAnswers : AppCompatActivity() , OnCarItemClickListner {
 
         //postId =  intent.getStringExtra("postId")
 
-        getDataFromFireStore()
+        getDataFromFireStoree()
 
 
 
@@ -85,62 +86,86 @@ class MyAnswers : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun logoutfun(){
-       // auth.signOut()
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        // finish()
-        //finishAffinity()
+        exitProcess(-1)
     }
 
-    fun getDataFromFireStore() {//feed activitgibi sadece benim verdiğim cevapları içeren postalrı açar
+    fun getDataFromFireStoree() {//feed activitgibi sadece benim verdiğim cevapları içeren postalrı açar
         // db.collection("Users").document(userId).collection("Posts").add(postMap)
         userId = auth.uid.toString()
-        println(userId)
+      //  println(userId)
 
 
 
-            db.collection("Users").document(userId).collection("userAnswers")
-                        .orderBy("date", Query.Direction.DESCENDING)
-                        .addSnapshotListener { snapshot, exception -> //kendi soruları için
-                            if (exception != null) {
-                                Toast.makeText(
-                                    applicationContext,
-                                    exception.localizedMessage.toString(),
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            } else {
-                                if (snapshot != null && !snapshot.isEmpty) {
-                                    //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
-                                    userEmailFromFB.clear()
-                                    userQuestionFromFB.clear()
-                                    userImageFromFB.clear()
-                                    postIdFromFB.clear()
-                                    val documents = snapshot.documents
-                                    for (document in documents) {
-                                        val question = document.get("Questions") as String
+        db.collection("Users").document(userId).collection("userAnswers")
+            .addSnapshotListener { snapshot, exception -> //kendi soruları için
+                if (exception != null) {
+                    Toast.makeText(
+                        applicationContext,
+                        exception.localizedMessage.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+
+                   if (snapshot != null && !snapshot.isEmpty) {
+                        //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
+
+                       userEmailFromFB.clear()
+                       userQuestionFromFB.clear()
+                       userImageFromFB.clear()
+                       postIdFromFB.clear()
+                        val documents = snapshot.documents
+                        for (document in documents) {
+
+
+                            //   db.collection("Posts").document(postId).
+                            postId=document.get("postId")  as String
+
+                            println("--")
+                            println(postId)
+                            println("--")
+
+
+                            db.collection("Posts").document(postId)
+                                .addSnapshotListener { snapshot, exception -> //tüm sorular için
+                                    //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
+                                    if (exception != null) {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            exception.localizedMessage.toString(),
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    } else {
+
+
+
+                                        val question = snapshot!!.get("Questions") as String
                                         val timestamp =
-                                            document.get("date") as com.google.firebase.Timestamp
+                                            snapshot.get("date") as com.google.firebase.Timestamp
                                         val date = timestamp.toDate()
-                                        val postId = document.id as String
-                                        val userEmail = document.get("userEmail") as String
-                                        val downloadUrl = document.get("downloadUrl") as String
+                                   //     val postId = snapshot.id as String
+                                        val userEmail = snapshot.get("userEmail") as String
+                                        val downloadUrl = snapshot.get("downloadUrl") as String
 
-                                        /*println(userEmail)
-                                println(question)
-                                println(date)
-                                println(downloadUrl)*/
                                         userEmailFromFB.add(userEmail)
                                         userQuestionFromFB.add(question)
                                         userImageFromFB.add(downloadUrl)
                                         postIdFromFB.add(postId)
                                         adapter!!.notifyDataSetChanged()
+                                        // val doc=snapshot!!.get("") as String
                                     }
+                               /*     println(userEmail)
+                                println(question)
+                                println(date)
+                                println(downloadUrl)*/
+
                                 }
-                            }
                         }
-
-
+                    }
                 }
+
+
+            }
+    }
 
 
                 // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için

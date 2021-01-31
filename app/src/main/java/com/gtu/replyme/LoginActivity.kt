@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_log_in.*
+import kotlin.system.exitProcess
 
 class LoginActivity : AppCompatActivity() {
 
@@ -70,11 +71,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun logoutfun(){
-        auth.signOut()
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        // finish()
-        //finishAffinity()
+        exitProcess(-1)
     }
 
 }

@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
+import kotlin.system.exitProcess
 
 class showAnswer : AppCompatActivity() , OnCarItemClickListner {
     var postId = ""
@@ -90,11 +91,7 @@ class showAnswer : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun logoutfun(){
-       // auth.signOut()
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        // finish()
-        //finishAffinity()
+        exitProcess(-1)
     }
 
     fun getDataFromFireStore()

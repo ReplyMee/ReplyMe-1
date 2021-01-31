@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 import kotlin.system.exitProcess
 
-class Myquestions : AppCompatActivity() , OnCarItemClickListner {
+class showMyOrOtherQuestions : AppCompatActivity() , OnCarItemClickListner {
 
     private lateinit var  auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
@@ -64,14 +64,18 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_myquestions)
+        setContentView(R.layout.activity_show_my_or_other_questions)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+       // userId = auth.uid.toString()
+
+        userId =  intent.getStringExtra("userId")
+
         getDataFromFireStore()
 
-        userId = auth.uid.toString()
+        //userId = auth.uid.toString()
 
         //recyclerview ayarları
         var layoutManager = LinearLayoutManager(this)
@@ -90,11 +94,10 @@ class Myquestions : AppCompatActivity() , OnCarItemClickListner {
     fun getDataFromFireStore()
     {//feed activity gibi sadece benim sorduğum soruları açar
         // db.collection("Users").document(userId).collection("Posts").add(postMap)
-        userId = auth.uid.toString()
-        println(userId)
 
-       // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
-               db.collection("Users").document(userId).collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception -> //kendi soruları için
+
+            // db.collection("Posts").addSnapshotListener { snapshot, exception -> //tüm sorular için
+        db.collection("Posts").whereEqualTo("postUserId",userId).addSnapshotListener { snapshot, exception -> //kendi soruları için
             if(exception !=null)
             {
                 Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()

@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
+import kotlin.system.exitProcess
 
 class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
@@ -49,7 +50,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
         }
         else if (item.itemId==  R.id.logout)
         {
-            logoutfun()
+            exitProcess(-1)
         }
         else if (item.itemId==  R.id.profile)
         {
@@ -90,13 +91,13 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
     }
 
-    fun logoutfun(){
+   /* fun logoutfun(){
         //auth.signOut()
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
        // finish()
         //finishAffinity()
-    }
+    }*/
 
     fun getDataFromFireStore()
     {
@@ -154,7 +155,7 @@ class FeedActivity : AppCompatActivity() , OnCarItemClickListner {
 
         else//seçilenkatagorideki postları açar
         {
-            db.collection("Catagorys").document("subCatagorys").collection(catagory).addSnapshotListener { snapshot, exception -> //tüm sorular için
+            db.collection("Posts").whereEqualTo("catagory",catagory).addSnapshotListener { snapshot, exception -> //tüm sorular için
                 //   db.collection("Users").document(userId).collection("Posts").addSnapshotListener { snapshot, exception -> //kendi soruları için
                 if(exception !=null)
                 {

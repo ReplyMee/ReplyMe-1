@@ -34,14 +34,35 @@ class sign_up : AppCompatActivity() {
     {
         val email = emaill.text.toString()
             // Eklenmesi geereken bir şey
-        val username = Username
+        val username = Username.text.toString()
         val paswordAgain= PasswordAgain.text.toString()
         val password = Password.text.toString()
 
         // Kontrol edilmesi gerekiyor
-        if (password != paswordAgain ){
+        if(username.isNullOrEmpty())
+        {
+            Toast.makeText(applicationContext,"User name should be entered",Toast.LENGTH_SHORT).show()
+        }
+        else  if(email.isNullOrEmpty())
+        {
+            Toast.makeText(applicationContext,"Email should be entered",Toast.LENGTH_SHORT).show()
+        }
+        else  if(password.isNullOrEmpty())
+        {
+            Toast.makeText(applicationContext,"Passwords should be entered",Toast.LENGTH_SHORT).show()
+        }
+        else  if(paswordAgain.isNullOrEmpty())
+        {
+            Toast.makeText(applicationContext,"Passwords should be entered",Toast.LENGTH_SHORT).show()
+        }
+        // Kontrol edilmesi gerekiyor
+        else if (password != paswordAgain ){
+            Toast.makeText(applicationContext,"Passwords should be same",Toast.LENGTH_SHORT).show()
+        }
+        else if (password != paswordAgain ){
             Toast.makeText(applicationContext,"Password should be same",Toast.LENGTH_SHORT).show()
         }
+
         else {
 
             auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->

@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
+import kotlin.system.exitProcess
 
 class otherQuestions : AppCompatActivity() , OnCarItemClickListner {
 
@@ -85,11 +86,7 @@ class otherQuestions : AppCompatActivity() , OnCarItemClickListner {
     }
 
     fun logoutfun(){
-        auth.signOut()
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        // finish()
-        //finishAffinity()
+        exitProcess(-1)
     }
 
     fun getDataFromFireStore() {
@@ -115,8 +112,58 @@ class otherQuestions : AppCompatActivity() , OnCarItemClickListner {
 
 
 
+                    db.collection("Posts").whereEqualTo("postUserId",userId).addSnapshotListener { snapshot, exception -> //kendi soruları için
+                        if(exception !=null)
+                        {
+                            Toast.makeText(applicationContext,exception.localizedMessage.toString(),Toast.LENGTH_LONG).show()
+                        }
 
-                    db.collection("Users").document(userId).collection("Posts")
+                        else
+                        {
+                            if(snapshot != null&&!snapshot.isEmpty)
+                            {
+
+                                //yenileme öncesi temizleme yapıytoruz her akışa geldiğinde
+                                userEmailFromFB.clear()
+                                userQuestionFromFB.clear()
+                                userImageFromFB.clear()
+                                postIdFromFB.clear()
+                                val documents= snapshot.documents
+                                for (document in documents)
+                                {
+
+
+                                    val question = document.get("Questions") as String
+                                    val timestamp = document.get("date") as com.google.firebase.Timestamp
+                                    val date = timestamp.toDate()
+                                    val postId = document.id as String
+                                    val userEmail = document.get("userEmail") as String
+                                    val downloadUrl = document.get("downloadUrl") as String
+
+                                    /*println(userEmail)
+                                    println(question)
+                                    println(date)
+                                    println(downloadUrl)*/
+
+                                    userEmailFromFB.add(userEmail)
+                                    userQuestionFromFB.add(question)
+                                    userImageFromFB.add(downloadUrl)
+                                    postIdFromFB.add(postId)
+                                    adapter!!.notifyDataSetChanged()
+                                }
+
+
+                            }
+
+
+                        }
+                    }
+
+
+
+
+
+                 /*   db.collection("Users").document(userId).collection("Posts")
                         .orderBy("date", Query.Direction.DESCENDING)
                         .addSnapshotListener { snapshot, exception -> //kendi soruları için
                             if (exception != null) {
@@ -154,7 +201,7 @@ class otherQuestions : AppCompatActivity() , OnCarItemClickListner {
                                     }
                                 }
                             }
-                        }
+                        }*/
 
 
                 }

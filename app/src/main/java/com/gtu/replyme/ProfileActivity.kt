@@ -38,7 +38,7 @@ class ProfileActivity : AppCompatActivity() {
 
         // db.collection("Users").document(userId).collection("Posts").add(postMap)
 
-        println(userId)
+
 
 
 
@@ -162,7 +162,10 @@ class ProfileActivity : AppCompatActivity() {
             // UserName.text="test"
     }
     fun yourQuestions(view: View) {
-        val intent = Intent(applicationContext,Myquestions::class.java)
+      /*  val intent = Intent(applicationContext,Myquestions::class.java)
+        startActivity(intent)*/
+        val intent = Intent(applicationContext,showMyOrOtherQuestions::class.java)
+        intent.putExtra("userId",userId)
         startActivity(intent)
        // finish()
     }
